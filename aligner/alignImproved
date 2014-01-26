@@ -13,56 +13,63 @@ optparser.add_option("-n", "--num_sentences", dest="num_sents", default=sys.maxi
 f_data = "%s.%s" % (opts.train, opts.french)
 e_data = "%s.%s" % (opts.train, opts.english)
 
-sys.stderr.write("Training with Dice's coefficient...")
+sys.stderr.write("Training with IBM Model 1...\n")
 bitext = [[sentence.strip().split() for sentence in pair] for pair in zip(open(e_data),open(f_data))[:opts.num_sents]]
+
+allEngWords = []
+allForWords = []
+
+for (es, fs) in bitext:
+  allEngWords += es
+  allForWords += fs
+
+allEngWords = set(allEngWords)
+allForWords = set(allForWords)
 
 #initialize t(e|f) uniformly
 t_e_f = defaultdict(float)
-for (es,fs) in bitext:
-  for ew in es:
-    for fw in fs:
-      t_e_f[(ew,fw)] = 1.0/len(fs)
+for ew in allEngWords:
+  for fw in allForWords:
+    t_e_f[(ew, fw)] = 1.0/len(allForWords)
 
+for i in range(100):
 
-#TODO: while not converged
+  count_e_f = defaultdict(float)
+  total_f = defaultdict(float)
 
-count_e_f = defaultdict(float)
-total_f = defaultdict(float)
-
-for (es,fs) in bitext:
-  for fw in fs:
-    for ew in es:
+  for fw in allForWords:
+    for ew in allEngWords:
       count_e_f[(ew,fw)] = 0
     total_f[fw] = 0
 
-s_total = defaultdict(float)
+  s_total = defaultdict(float)
+  for (es,fs) in bitext:
+    #compute normalization
+    for ew in set(es):
+      s_total[ew] = 0
+      for fw in set(fs):
+        s_total[ew] += t_e_f[(ew, fw)]
+    #collect counts
+    for ew in set(es):
+      for fw in set(fs):
+        count_e_f[(ew,fw)] += t_e_f[(ew,fw)]/s_total[ew]
+        total_f[fw] += t_e_f[(ew,fw)]/s_total[ew]
 
-for (es,fs) in bitext:
-  for ew in es:
-    s_total[ew] = 0
-    for fw in fs:
-      s_total[ew] += t_e_f[(ew, fw)]
-  
-  for ew in es:
-    for fw in fs:
-      count_e_f[(ew,fw)] += t_e_f[(ew,fw)]/s_total[ew]
-      total_f[fw] += t_e_f[(ew,fw)]/s_total[ew]
-
-'''
-all_words = [],[]
-for (es,fs) in bitext
-all_words[0] += es
-all_words[1] += fs
-'''
-
-for (es,fs) in bitext:
-  for ew in es:
-    for fw in fs:
+  #estimate probabilities
+  for ew in allEngWords:
+    for fw in allForWords:
       t_e_f[(ew, fw)] = count_e_f[(ew,fw)]/total_f[fw]
 
-for (f, e) in bitext:
-  for (i, f_i) in enumerate(f): 
-    for (j, e_j) in enumerate(e):
-      if dice[(f_i,e_j)] >= opts.threshold:
-        sys.stdout.write("%i-%i " % (i,j))
-        sys.stdout.write("\n")
+    
+
+
+for (fs, es) in bitext:
+  for (i, fw) in enumerate(fs):
+    max_prob = -float('inf')
+    translation = 0
+    for (j, ew) in enumerate(es):
+      if t_e_f[(ew, fw)] >= max_prob:
+        max_prob = t_e_f[(ew,fw)]
+        translation = j
+    sys.stdout.write("%i-%i " % (i,translation)) 
+  sys.stdout.write("\n")
