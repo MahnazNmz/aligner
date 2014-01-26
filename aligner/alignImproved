@@ -19,11 +19,21 @@ bitext = [[sentence.strip().split() for sentence in pair] for pair in zip(open(e
 count_e_f = defaultdict(int)
 total_f = defaultdict(int)
 
-for (e,f) in bitext:
-  for eng in f:
-    for foreign in e:
-      count_e_f[(eng,foreign)] = 0
-  total_f[foreign] = 0
+for (es,fs) in bitext:
+  for fw in fs:
+    for ew in es:
+      count_e_f[(ew,fw)] = 0
+  total_f[fw] = 0
+
+s_total = defaultdict(int)
+
+for (es,fs) in bitext:
+  for ew in es:
+    s_total[ew] = 0
+    for fw in fs:
+
+
+
 
 
 for (f, e) in bitext:
