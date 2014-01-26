@@ -16,6 +16,15 @@ e_data = "%s.%s" % (opts.train, opts.english)
 sys.stderr.write("Training with Dice's coefficient...")
 bitext = [[sentence.strip().split() for sentence in pair] for pair in zip(open(e_data),open(f_data))[:opts.num_sents]]
 
+for (es,fs) in bitext:
+
+#initialize t(e|f) uniformly
+t_e_f = defaultdict(int)
+  for ew in es:
+    for fw in fs:
+      t_e_f[(ew,fw)] = 1/len(fs)
+
+
 count_e_f = defaultdict(int)
 total_f = defaultdict(int)
 
