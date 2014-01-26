@@ -7,7 +7,6 @@ optparser = optparse.OptionParser()
 optparser.add_option("-d", "--data", dest="train", default="data/hansards", help="Data filename prefix (default=data)")
 optparser.add_option("-e", "--english", dest="english", default="e", help="Suffix of English filename (default=e)")
 optparser.add_option("-f", "--french", dest="french", default="f", help="Suffix of French filename (default=f)")
-optparser.add_option("-t", "--threshold", dest="threshold", default=0.5, type="float", help="Threshold for aligning with Dice's coefficient (default=0.5)")
 optparser.add_option("-n", "--num_sentences", dest="num_sents", default=sys.maxint, type="int", help="Number of sentences to use for training and alignment")
 (opts, _) = optparser.parse_args()
 f_data = "%s.%s" % (opts.train, opts.french)
@@ -32,7 +31,7 @@ for ew in allEngWords:
   for fw in allForWords:
     t_e_f[(ew, fw)] = 1.0/len(allEngWords)
 
-for i in range(5):
+for i in range(10):
   
   #initialize
   count_e_f = defaultdict(float)
@@ -46,13 +45,13 @@ for i in range(5):
   s_total = defaultdict(float)
   for (es,fs) in bitext:
     #compute normalization
-    for ew in es:
+    for ew in set(es):
       s_total[ew] = 0
-      for fw in fs:
+      for fw in set(fs):
         s_total[ew] += t_e_f[(ew, fw)]
     #collect counts
-    for ew in es:
-      for fw in fs:
+    for ew in set(es):
+      for fw in set(fs):
         count_e_f[(ew,fw)] += t_e_f[(ew,fw)]/s_total[ew]
         total_f[fw] += t_e_f[(ew,fw)]/s_total[ew]
 
