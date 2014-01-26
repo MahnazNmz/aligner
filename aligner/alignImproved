@@ -32,7 +32,7 @@ allForWords = set(allForWords)
 t_e_f_Eng = defaultdict(float)
 for ew in allEngWords:
   for fw in allForWords:
-    t_e_f[(ew, fw)] = 1.0/len(allForWords)
+    t_e_f_Eng[(ew, fw)] = 1.0/len(allForWords)
 
 for i in range(10):
   
@@ -70,7 +70,7 @@ for i in range(10):
 t_e_f_For = defaultdict(float)
 for ew in allEngWords:
   for fw in allForWords:
-    t_e_f_For[(fw, ew)] = 1.0/len(allForWords)
+    t_e_f_For[(fw, ew)] = 1.0/len(allEngWords)
 
 for i in range(10):
   
