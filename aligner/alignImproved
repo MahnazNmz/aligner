@@ -25,11 +25,13 @@ for (es, fs) in bitext:
 allEngWords = set(allEngWords)
 allForWords = set(allForWords)
 
+#ENGLISH
+
 #initialize t(e|f) uniformly
-t_e_f = defaultdict(float)
+t_e_f_Eng = defaultdict(float)
 for ew in allEngWords:
   for fw in allForWords:
-    t_e_f[(ew, fw)] = 1.0/len(allEngWords)
+    t_e_f_Eng[(ew, fw)] = 1.0/len(allEngWords)
 
 for i in range(10):
   
@@ -48,17 +50,56 @@ for i in range(10):
     for ew in set(es):
       s_total[ew] = 0
       for fw in set(fs):
-        s_total[ew] += t_e_f[(ew, fw)]
+        s_total[ew] += t_e_f_Eng[(ew, fw)]
     #collect counts
     for ew in set(es):
       for fw in set(fs):
-        count_e_f[(ew,fw)] += t_e_f[(ew,fw)]/s_total[ew]
-        total_f[fw] += t_e_f[(ew,fw)]/s_total[ew]
+        count_e_f[(ew,fw)] += t_e_f_Eng[(ew,fw)]/s_total[ew]
+        total_f[fw] += t_e_f_Eng[(ew,fw)]/s_total[ew]
 
   #estimate probabilities
   for fw in allForWords:
     for ew in allEngWords:
-      t_e_f[(ew, fw)] = count_e_f[(ew,fw)]/total_f[fw]
+      t_e_f_Eng[(ew, fw)] = count_e_f[(ew,fw)]/total_f[fw]
+
+
+#FOREIGN
+
+#initialize t(e|f) uniformly
+t_e_f_For = defaultdict(float)
+for ew in allEngWords:
+  for fw in allForWords:
+    t_e_f_For[(fw, ew)] = 1.0/len(allForWords)
+
+for i in range(10):
+  
+  #initialize
+  count_e_f = defaultdict(float)
+  total_e = defaultdict(float)
+
+  for ew in allEngWords:
+    for fw in allForWords:
+      count_e_f[(fw,ew)] = 0
+    total_e[ew] = 0
+
+  s_total = defaultdict(float)
+  for (es,fs) in bitext:
+    #compute normalization
+    for fw in set(fs):
+      s_total[fw] = 0
+      for ew in set(es):
+        s_total[fw] += t_e_f_For[(fw, ew)]
+    #collect counts
+    for fw in set(fs):
+      for ew in set(es):
+        count_e_f[(fw,ew)] += t_e_f_For[(fw,ew)]/s_total[fw]
+        total_e[ew] += t_e_f_For[(fw,ew)]/s_total[fw]
+
+  #estimate probabilities
+  for fw in allForWords:
+    for ew in allEngWords:
+      t_e_f_For[(fw, ew)] = count_e_f[(fw,ew)]/total_e[ew]
+
 
 
 
@@ -67,8 +108,8 @@ for (es, fs) in bitext:
     max_prob = -float('inf')
     translation = 0
     for (j, ew) in enumerate(es):
-      if t_e_f[(ew, fw)] >= max_prob:
-        max_prob = t_e_f[(ew,fw)]
+      if t_e_f_Eng[(ew, fw)] * t_e_f_For[(fw,ew)] >= max_prob:
+        max_prob = t_e_f_Eng[(ew,fw)] * t_e_f_For[(fw,ew)]
         translation = j
     sys.stdout.write("%i-%i " % (i,translation)) 
   sys.stdout.write("\n")
