@@ -32,8 +32,9 @@ for ew in allEngWords:
   for fw in allForWords:
     t_e_f[(ew, fw)] = 1.0/len(allForWords)
 
-for i in range(100):
-
+for i in range(5):
+  
+  #initialize
   count_e_f = defaultdict(float)
   total_f = defaultdict(float)
 
@@ -56,11 +57,10 @@ for i in range(100):
         total_f[fw] += t_e_f[(ew,fw)]/s_total[ew]
 
   #estimate probabilities
-  for ew in allEngWords:
-    for fw in allForWords:
+  for fw in allForWords:
+    for ew in allEngWords:
       t_e_f[(ew, fw)] = count_e_f[(ew,fw)]/total_f[fw]
 
-    
 
 
 for (fs, es) in bitext:
