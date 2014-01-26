@@ -46,13 +46,13 @@ for i in range(5):
   s_total = defaultdict(float)
   for (es,fs) in bitext:
     #compute normalization
-    for ew in set(es):
+    for ew in es:
       s_total[ew] = 0
-      for fw in set(fs):
+      for fw in fs:
         s_total[ew] += t_e_f[(ew, fw)]
     #collect counts
-    for ew in set(es):
-      for fw in set(fs):
+    for ew in es:
+      for fw in fs:
         count_e_f[(ew,fw)] += t_e_f[(ew,fw)]/s_total[ew]
         total_f[fw] += t_e_f[(ew,fw)]/s_total[ew]
 
@@ -63,7 +63,7 @@ for i in range(5):
 
 
 
-for (fs, es) in bitext:
+for (es, fs) in bitext:
   for (i, fw) in enumerate(fs):
     max_prob = -float('inf')
     translation = 0
