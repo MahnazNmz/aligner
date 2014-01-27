@@ -19,30 +19,26 @@ bitext = [[sentence.strip().split() for sentence in pair] for pair in zip(open(e
 allEngWords = []
 allForWords = []
 
-for (es, fs) in bitext:
-  allEngWords += es
-  allForWords += fs
-
-allEngWords = set(allEngWords)
-allForWords = set(allForWords)
-
 #ENGLISH
 
 #initialize t(e|f) uniformly
 t_e_f_Eng = defaultdict(float)
-for ew in allEngWords:
-  for fw in allForWords:
-    t_e_f_Eng[(ew, fw)] = 1.0/len(allForWords)
 
-for i in range(10):
+for (es, fs) in bitext:
+  for ew in es:
+    for fw in fs:
+      t_e_f_Eng[(ew, fw)] = 1.0/len(fs)
+
+for i in range(5):
   
   #initialize
   count_e_f = defaultdict(float)
   total_f = defaultdict(float)
 
-  for fw in allForWords:
-    for ew in allEngWords:
-      count_e_f[(ew,fw)] = 0
+  for (es, fs) in bitext:
+    for fw in fs:
+      for ew in es:
+        count_e_f[(ew,fw)] = 0
     total_f[fw] = 0
 
   s_total = defaultdict(float)
@@ -59,30 +55,32 @@ for i in range(10):
         total_f[fw] += t_e_f_Eng[(ew,fw)]/s_total[ew]
 
   #estimate probabilities
-  for fw in allForWords:
-    for ew in allEngWords:
-      t_e_f_Eng[(ew, fw)] = count_e_f[(ew,fw)]/total_f[fw]
+  for (es, fs) in bitext:
+    for fw in fs:
+      for ew in es:
+        t_e_f_Eng[(ew, fw)] = count_e_f[(ew, fw)]/total_f[fw]
 
 
 #FOREIGN
 
 #initialize t(e|f) uniformly
 t_e_f_For = defaultdict(float)
-for ew in allEngWords:
-  for fw in allForWords:
-    t_e_f_For[(fw, ew)] = 1.0/len(allEngWords)
+for (es, fs) in bitext:
+  for fw in fs:
+    for ew in es:
+      t_e_f_For[(fw, ew)] =  1.0/len(es)
 
-for i in range(10):
+for i in range(5):
   
   #initialize
   count_e_f = defaultdict(float)
   total_e = defaultdict(float)
-
-  for ew in allEngWords:
-    for fw in allForWords:
-      count_e_f[(fw,ew)] = 0
+  for (es, fs) in bitext:
+    for ew in es:
+      for fw in fs:
+        count_e_f[(fw, ew)] = 0
     total_e[ew] = 0
-
+ 
   s_total = defaultdict(float)
   for (es,fs) in bitext:
     #compute normalization
@@ -97,24 +95,36 @@ for i in range(10):
         total_e[ew] += t_e_f_For[(fw,ew)]/s_total[fw]
 
   #estimate probabilities
-  for fw in allForWords:
-    for ew in allEngWords:
-      t_e_f_For[(fw, ew)] = count_e_f[(fw,ew)]/total_e[ew]
-
-
+  for (es,fs) in bitext:
+    for ew in es:
+      for fw in fs:
+        t_e_f_For[(fw, ew)] = count_e_f[(fw, ew)]/total_e[ew]
 
 
 for (es, fs) in bitext:
+  tf = defaultdict(float)
+  for fw in fs:
+    tf[fw] = 0
+    for ew in es:
+      tf[fw] += t_e_f_For[(fw, ew)]
+
+  te = defaultdict(float)
+  for ew in es:
+    te[ew] = 0
+    for fw in fs:
+      te[ew] += t_e_f_Eng[(ew, fw)]
+
   for (i, fw) in enumerate(fs):
     max_prob = -float('inf')
     translation = 0
-    for (j, ew) in enumerate(es):
-      if t_e_f_Eng[(ew, fw)] * t_e_f_For[(fw,ew)] > max_prob:
-        max_prob = t_e_f_Eng[(ew,fw)] * t_e_f_For[(fw,ew)]
+    for (j, ew) in enumerate(es): 
+      #get average of t(e|f) based on the two models
+      tef = (t_e_f_Eng[(ew, fw)] + t_e_f_For[(fw,ew)]*te[ew]/tf[fw])/2
+      if tef > max_prob:
+        max_prob = tef
         translation = j
-      elif t_e_f[(ew, fw)] == max_prob:
+      elif tef == max_prob:
         if abs(j - i) < abs(translation - i):
-          max_prob = t_e_f[(ew, fw)]
           translation = j
-    sys.stdout.write("%i-%i " % (i,translation)) 
+    sys.stdout.write("%i-%i " % (i, translation)) 
   sys.stdout.write("\n")
