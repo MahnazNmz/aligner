@@ -16,10 +16,6 @@ e_data = "%s.%s" % (opts.train, opts.english)
 sys.stderr.write("Training with IBM Model 1...")
 bitext = [[sentence.strip().split() for sentence in pair] for pair in zip(open(e_data),open(f_data))[:opts.num_sents]]
 
-#create sets of english and foreighn words
-allEngWords = []
-allForWords = []
-
 #ENGLISH
 
 #initialize t(e|f) uniformly
@@ -28,7 +24,7 @@ t_e_f_Eng = defaultdict(float)
 for (es, fs) in bitext:
   for ew in es:
     for fw in fs + ["null"]:
-      t_e_f_Eng[(ew, fw)] = 1.0/(len(fs) + 1) 
+      t_e_f_Eng[(ew, fw)] = 1.0/(len(fs) + 1)
 
 for i in range(20):
   
@@ -112,7 +108,7 @@ tef_len = 0
 
 for (es, fs) in bitext:
   tf = defaultdict(float)
-  for fw in fs + []:
+  for fw in fs:
     tf[fw] = 0
     for ew in es + ["null"]:
       tf[fw] += t_e_f_For[(fw, ew)]
@@ -151,7 +147,7 @@ for (es,fs) in bitext:
         if abs(j - i) < abs(translation - i):
           translation = j
     #threshold
-    if max_prob > threshold and translation < len(fs):
+    if max_prob > threshold and translation < len(es):
       sys.stdout.write("%i-%i " % (i, translation)) 
   sys.stdout.write("\n")
 
