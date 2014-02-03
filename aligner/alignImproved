@@ -27,8 +27,8 @@ t_e_f_Eng = defaultdict(float)
 
 for (es, fs) in bitext:
   for ew in es:
-    for fw in fs:
-      t_e_f_Eng[(ew, fw)] = 1.0/len(fs)
+    for fw in fs + ["null"]:
+      t_e_f_Eng[(ew, fw)] = 1.0/(len(fs) + 1) 
 
 for i in range(20):
   
@@ -37,7 +37,7 @@ for i in range(20):
   total_f = defaultdict(float)
 
   for (es, fs) in bitext:
-    for fw in fs:
+    for fw in fs + ["null"]:
       for ew in es:
         count_e_f[(ew,fw)] = 0
     total_f[fw] = 0
@@ -47,17 +47,17 @@ for i in range(20):
     #compute normalization
     for ew in set(es):
       s_total[ew] = 0
-      for fw in set(fs):
+      for fw in set(fs + ["null"]):
         s_total[ew] += t_e_f_Eng[(ew, fw)]
     #collect counts
     for ew in set(es):
-      for fw in set(fs):
+      for fw in set(fs + ["null"]):
         count_e_f[(ew,fw)] += t_e_f_Eng[(ew,fw)]/s_total[ew]
         total_f[fw] += t_e_f_Eng[(ew,fw)]/s_total[ew]
 
   #estimate probabilities
   for (es, fs) in bitext:
-    for fw in fs:
+    for fw in fs + ["null"]:
       for ew in es:
         t_e_f_Eng[(ew, fw)] = count_e_f[(ew, fw)]/total_f[fw]
   sys.stderr.write(".")
@@ -70,8 +70,8 @@ for i in range(20):
 t_e_f_For = defaultdict(float)
 for (es, fs) in bitext:
   for fw in fs:
-    for ew in es:
-      t_e_f_For[(fw, ew)] =  1.0/len(es)
+    for ew in es + ["null"]:
+      t_e_f_For[(fw, ew)] =  1.0/(len(es) + 1)
 
 for i in range(20):
   
@@ -79,7 +79,7 @@ for i in range(20):
   count_e_f = defaultdict(float)
   total_e = defaultdict(float)
   for (es, fs) in bitext:
-    for ew in es:
+    for ew in es + ["null"]:
       for fw in fs:
         count_e_f[(fw, ew)] = 0
     total_e[ew] = 0
@@ -89,17 +89,17 @@ for i in range(20):
     #compute normalization
     for fw in set(fs):
       s_total[fw] = 0
-      for ew in set(es):
+      for ew in set(es + ["null"]):
         s_total[fw] += t_e_f_For[(fw, ew)]
     #collect counts
     for fw in set(fs):
-      for ew in set(es):
+      for ew in set(es + ["null"]):
         count_e_f[(fw,ew)] += t_e_f_For[(fw,ew)]/s_total[fw]
         total_e[ew] += t_e_f_For[(fw,ew)]/s_total[fw]
 
   #estimate probabilities
   for (es,fs) in bitext:
-    for ew in es:
+    for ew in es + ["null"]:
       for fw in fs:
         t_e_f_For[(fw, ew)] = count_e_f[(fw, ew)]/total_e[ew]
   
@@ -112,20 +112,23 @@ tef_len = 0
 
 for (es, fs) in bitext:
   tf = defaultdict(float)
-  for fw in fs:
+  for fw in fs + []:
     tf[fw] = 0
-    for ew in es:
+    for ew in es + ["null"]:
       tf[fw] += t_e_f_For[(fw, ew)]
 
   te = defaultdict(float)
   for ew in es:
     te[ew] = 0
-    for fw in fs:
+    for fw in fs + ["null"]:
       te[ew] += t_e_f_Eng[(ew, fw)]
 
   for ew in es:
-    for fw in fs:
-      tef[(ew,fw)] = (t_e_f_Eng[(ew, fw)] + t_e_f_For[(fw,ew)]*te[ew]/tf[fw])/2
+    for fw in fs + ["null"]:
+      if tf[fw] == 0:
+        tef[(ew, fw)] = 0
+      else:
+        tef[(ew,fw)] = (t_e_f_Eng[(ew, fw)] + t_e_f_For[(fw,ew)]*te[ew]/tf[fw])/2
       tef_sum += tef[(ew,fw)]
       tef_sum_sq += tef[(ew,fw)] ** 2
       tef_len += 1
@@ -140,8 +143,7 @@ for (es,fs) in bitext:
   for (i, fw) in enumerate(fs):
     max_prob = -float('inf')
     translation = 0
-    for (j, ew) in enumerate(es): 
-      #get average of t(e|f) based on the two models
+    for (j, ew) in enumerate(es + ["null"]): 
       if tef[(ew,fw)] > max_prob:
         max_prob = tef[(ew,fw)]
         translation = j
@@ -149,7 +151,7 @@ for (es,fs) in bitext:
         if abs(j - i) < abs(translation - i):
           translation = j
     #threshold
-    if max_prob > threshold:
+    if max_prob > threshold and translation < len(fs):
       sys.stdout.write("%i-%i " % (i, translation)) 
   sys.stdout.write("\n")
 
