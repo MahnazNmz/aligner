@@ -151,7 +151,7 @@ for (es,fs) in bitext:
     max_prob_For = -float('inf')
     translation_For = 0
     for (j, fw) in enumerate(fs + ["null"]):
-      if t_e_f_For[(ew,fw)] > max_prob_For:
+      if t_e_f_For[(ew,fw)] > max_prob_For and (abs(j - i)) <= 5:
         max_prob_For = t_e_f_For[(ew,fw)]
         translation_For = j
       elif t_e_f_For[(ew,fw)] == max_prob_For:
