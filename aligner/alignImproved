@@ -140,7 +140,7 @@ for (es,fs) in bitext:
     max_prob = -float('inf')
     translation = 0
     for (j, ew) in enumerate(es + ["null"]): 
-      if tef[(ew,fw)] > max_prob:
+      if tef[(ew,fw)] > max_prob and fabs(j - i) < 5:
         max_prob = tef[(ew,fw)]
         translation = j
       elif tef[(ew,fw)] == max_prob:
