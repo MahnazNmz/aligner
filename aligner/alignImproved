@@ -102,9 +102,6 @@ for i in range(20):
   sys.stderr.write(".")
 
 tef = defaultdict(float)
-tef_sum = 0
-tef_sum_sq = 0
-tef_len = 0
 
 for (es, fs) in bitext:
   tf = defaultdict(float)
@@ -119,15 +116,13 @@ for (es, fs) in bitext:
     for fw in fs + ["null"]:
       te[ew] += t_e_f_Eng[(ew, fw)]
 
-  for ew in es:
-    for fw in fs + ["null"]:
-      if tf[fw] == 0:
-        tef[(ew, fw)] = 0
-      else:
-        tef[(ew,fw)] = (t_e_f_Eng[(ew, fw)] + t_e_f_For[(fw,ew)]*te[ew]/tf[fw])/2
-      tef_sum += tef[(ew,fw)]
-      tef_sum_sq += tef[(ew,fw)] ** 2
-      tef_len += 1
+  #for ew in es:
+  #  for fw in fs + ["null"]:
+  #    if tf[fw] == 0:
+  #      tef[(ew, fw)] = 0
+  #    else:
+  #      tef[(ew,fw)] = (t_e_f_Eng[(ew, fw)] + t_e_f_For[(fw,ew)]*te[ew]/tf[fw])/2
+
 
 tef_values = list(tef.values())
 stdev = numpy.std(tef_values)
@@ -137,17 +132,31 @@ threshold = mean + (3 * stdev)
 
 for (es,fs) in bitext:
   for (i, fw) in enumerate(fs):
-    max_prob = -float('inf')
-    translation = 0
+    max_prob_Eng = -float('inf')
+    translation_Eng = 0
     for (j, ew) in enumerate(es + ["null"]): 
-      if tef[(ew,fw)] > max_prob:
-        max_prob = tef[(ew,fw)]
-        translation = j
-      elif tef[(ew,fw)] == max_prob:
-        if abs(j - i) < abs(translation - i):
-          translation = j
+      if tef_Eng[(ew,fw)] > max_prob:
+        max_prob_Eng = tef[(ew,fw)]
+        translation_Eng = j
+      elif tef_Eng[(ew,fw)] == max_prob:
+        if abs(j - i) < abs(translation_Eng - i):
+          translation_Eng = j
+          sys.stdout.write("%i-%i " % (i, translation)) 
+      sys.stdout.write("%i-%i " % (i, translation)) 
+
+
+  for (i, ew) in enumerate(es):
+    max_prob_For = -float('inf')
+    translation_For = 0
+    for (j, fw) in enumerate(fs + ["null"]):
+      if tef_Eng[(ew,fw)] > max_prob:
+        max_prob_For = tef_For[(ew,fw)]
+        translation_For = j
+      elif tef_For[(ew,fw)] == max_prob:
+        if abs(j - i) < abs(translation_For - i):
+          translation_For = j
     #threshold
-    if max_prob > threshold and translation < len(es):
+    #if max_prob > threshold and translation < len(es):
       sys.stdout.write("%i-%i " % (i, translation)) 
   sys.stdout.write("\n")
 
