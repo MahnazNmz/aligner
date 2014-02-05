@@ -2,7 +2,7 @@
 import optparse
 import sys
 import numpy
-import math
+from math import exp
 from collections import defaultdict
 
 optparser = optparse.OptionParser()
@@ -19,16 +19,15 @@ bitext = [[sentence.strip().split() for sentence in pair] for pair in zip(open(e
 
 #ENGLISH
 
-#initialize t(e|f) uniformly
+#initialize t(e|f) with weighting
 t_e_f_Eng = defaultdict(float)
 
 for (es, fs) in bitext:
   for (i, ew) in enumerate(es):
     for (j, fw) in enumerate(fs + ["null"]):
-      rank = exp(-(i/len(es) - j/len(fs)))
-      t_e_f_Eng[(ew, fw)] = 1.0/rank
+      t_e_f_Eng[(ew, fw)] = exp(-(i - j)/len(es))
 
-for i in range(20):
+for i in range(10):
   
   #initialize
   count_e_f = defaultdict(float)
@@ -64,14 +63,15 @@ for i in range(20):
 
 #FOREIGN
 
-#initialize t(e|f) uniformly
+#initialize t(f|e) with weighting
 t_e_f_For = defaultdict(float)
 for (es, fs) in bitext:
   for fw in fs:
     for ew in es + ["null"]:
-      t_e_f_For[(fw, ew)] =  1.0/(len(es) + 1)
+      t_e_f_For[(fw, ew)] = exp(-(i - j)/len(fs))
 
-for i in range(20):
+
+for i in range(10):
   
   #initialize
   count_e_f = defaultdict(float)
