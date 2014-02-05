@@ -2,6 +2,7 @@
 import optparse
 import sys
 import numpy
+import math
 from collections import defaultdict
 
 optparser = optparse.OptionParser()
@@ -22,9 +23,10 @@ bitext = [[sentence.strip().split() for sentence in pair] for pair in zip(open(e
 t_e_f_Eng = defaultdict(float)
 
 for (es, fs) in bitext:
-  for ew in es:
-    for fw in fs + ["null"]:
-      t_e_f_Eng[(ew, fw)] = 1.0/(len(fs) + 1)
+  for (i, ew) in enumerate(es):
+    for (j, fw) in enumerate(fs + ["null"]):
+      rank = exp(-(i/len(es) - j/len(fs)))
+      t_e_f_Eng[(ew, fw)] = 1.0/rank
 
 for i in range(20):
   
@@ -116,48 +118,48 @@ for (es, fs) in bitext:
     for fw in fs + ["null"]:
       te[ew] += t_e_f_Eng[(ew, fw)]
 
-  #for ew in es:
-  #  for fw in fs + ["null"]:
-  #    if tf[fw] == 0:
-  #      tef[(ew, fw)] = 0
-  #    else:
-  #      tef[(ew,fw)] = (t_e_f_Eng[(ew, fw)] + t_e_f_For[(fw,ew)]*te[ew]/tf[fw])/2
+  for ew in es:
+    for fw in fs + ["null"]:
+      if tf[fw] == 0:
+        tef[(ew, fw)] = 0
+      else:
+        tef[(ew,fw)] = (t_e_f_Eng[(ew, fw)] + t_e_f_For[(fw,ew)]*te[ew]/tf[fw])/2
 
 
 tef_values = list(tef.values())
 stdev = numpy.std(tef_values)
 mean = numpy.mean(tef_values)
 
-threshold = mean + (3 * stdev)
+threshold = mean + (4 * stdev)
 
 for (es,fs) in bitext:
   for (i, fw) in enumerate(fs):
     max_prob_Eng = -float('inf')
     translation_Eng = 0
     for (j, ew) in enumerate(es + ["null"]): 
-      if tef_Eng[(ew,fw)] > max_prob:
-        max_prob_Eng = tef[(ew,fw)]
+      if t_e_f_Eng[(ew,fw)] > max_prob_Eng:
+        max_prob_Eng = t_e_f_Eng[(ew,fw)]
         translation_Eng = j
-      elif tef_Eng[(ew,fw)] == max_prob:
+      elif t_e_f_Eng[(ew,fw)] == max_prob_Eng:
         if abs(j - i) < abs(translation_Eng - i):
           translation_Eng = j
-          sys.stdout.write("%i-%i " % (i, translation)) 
-      sys.stdout.write("%i-%i " % (i, translation)) 
+    if max_prob_Eng > threshold and translation_Eng < len(es):
+      sys.stdout.write("%i-%i " % (i, translation_Eng)) 
 
 
   for (i, ew) in enumerate(es):
     max_prob_For = -float('inf')
     translation_For = 0
     for (j, fw) in enumerate(fs + ["null"]):
-      if tef_Eng[(ew,fw)] > max_prob:
-        max_prob_For = tef_For[(ew,fw)]
+      if t_e_f_For[(ew,fw)] > max_prob_For:
+        max_prob_For = t_e_f_For[(ew,fw)]
         translation_For = j
-      elif tef_For[(ew,fw)] == max_prob:
+      elif t_e_f_For[(ew,fw)] == max_prob_For:
         if abs(j - i) < abs(translation_For - i):
           translation_For = j
     #threshold
-    #if max_prob > threshold and translation < len(es):
-      sys.stdout.write("%i-%i " % (i, translation)) 
+    if max_prob_For > threshold and translation_For < len(es):
+      sys.stdout.write("%i-%i " % (i, translation_For)) 
   sys.stdout.write("\n")
 
 sys.stderr.write("\n")
