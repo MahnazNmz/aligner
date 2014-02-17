@@ -5,7 +5,7 @@ import models
 import numpy
 import math
 from collections import namedtuple
-
+from pythonds.graphs import PriorityQueue
 
 optparser = optparse.OptionParser()
 optparser.add_option("-i", "--input", dest="input", default="data/input", help="File containing sentences to translate (default=data/input)")
@@ -57,21 +57,20 @@ def minST(vertices, start):
     distances[v] = float('inf')
 
   distances[start] = 0
-  pq.buildHeap([(distances[v],v) for v in vertices.iterkeys()])
-
+  pq.buildHeap([(distances[v], v) for v in vertices])
   while not pq.isEmpty():
     current = pq.delMin()
     for next in vertices[current]:
-      newCost = edgeCosts(curent, next) + distance[current]
-      if v in pq and newCost < distance[next]:
-        pred[next] = current
-        distance[next] = newCost
-        pq.decreaseKey(next, newCost)
+      newCost = next[1] + distances[current]
+      if v in pq and newCost < distances[next[0]]:
+        pred[next[0]] = current
+        distances[next[0]] = newCost
+        pq.decreaseKey(next[0], newCost)
 
   #convert pred list to vertex list
   mst = {v:[] for v in vertices.iterkeys()}
-  for p in prev.iterkeys():
-    mst[prev[p]].append(p)
+  for p in pred.iterkeys():
+    mst[pred[p]].append(p)
 
   return mst
 
@@ -172,11 +171,11 @@ for f in french:
   path = []
   stack = []
   stack.append(terminator)
-  while not stack.isEmpty():
+  while not len(stack) == 0:
     v = stack.pop()
     if not v in marked:
       marked.add(v)
-      path.add(v)
+      path.append(v)
       for adj in mst[v]:
         stack.append(adj)
 
