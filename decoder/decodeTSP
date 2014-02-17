@@ -6,6 +6,7 @@ import numpy
 import math
 from collections import namedtuple
 
+
 optparser = optparse.OptionParser()
 optparser.add_option("-i", "--input", dest="input", default="data/input", help="File containing sentences to translate (default=data/input)")
 optparser.add_option("-t", "--translation-model", dest="tm", default="data/tm", help="File containing translation model (default=data/tm)")
@@ -20,39 +21,116 @@ tm = models.TM(opts.tm, opts.k)
 lm = models.LM(opts.lm)
 french = [tuple(line.strip().split()) for line in open(opts.input).readlines()[:opts.num_sents]]
 
+# tm should translate unknown words as-is with probability 1
+# had to add some weird fix for language model to deal with french words translated as themselves
+for word in set(sum(french,())):
+  if (word,) not in tm:
+    tm[(word,)] = [models.phrase(word, 0.0)]
+    lm.table[(word,)] = models.ngram_stats(0.0, 0.0)
+
 def edgeCosts(v1, v2):
-  if v1[1] == v2[1]:
+  if v2.isTerminator:
+    return lm.end(tuple(v1.english.split()[-2:]))
+  elif v1.french == v2.french:
     return 0
-  else:.
-    prob = tm[v2[1][1]].logprob
-    lm_state = v1[1][1].english.split()
-
-    for word in phrase.english.split():
+  else:
+    prob = v2.tm_prob
+    if v1.isTerminator:
+      lm_state = lm.begin()
+    else:
+      lm_state = tuple(v1.english.split()[-2:])
+    for word in v2.english.split():
       (lm_state, word_logprob) = lm.score(lm_state, word)
-      logprob += word_logprob
-    logprob += lm.end(lm_state) if i + (k - j) == len(f)  else 0.0
-    logprob += -math.log(abs(h.phrase_index[1] - j)**0.5)
+      prob += word_logprob
+    jumps = abs(v1.start - v2.start)
+    prob += -math.log(jumps**0.5)
 
+
+vertex = namedtuple("vertex", "word, french, english, tm_prob, start, isLeft, isTerminator, isCopy") 
+sys.stderr.write("Decoding...\n")
 for f in french:
-  vertices = {}  
+  vertices = {} 
+  terminator = vertex("", (), "", 0.0, -1, False, True, False)
+  #unigrams
   for start in range(len(f)):
+    for phrase in tm[f[start:start+1]]:
+      vertices[vertex(f[start], f[start:start+1], phrase.english, phrase.logprob, start, True, False, False)] = []
+  #bigrams
+  for start in range(len(f) - 1):
     if f[start:start+2] in tm:
-      left = true
       for phrase in tm[f[start:start+2]]:
+        left = True
         for word in f[start:start+2]:
-          vertices[(word, (f[start:start+2], phrase),left)] = []
+          vertices[vertex(word, f[start:start+2], phrase.english, phrase.logprob, start, left, False, False)] = []
           #only two values, left becomes false for right value
-          left = false
-  for vertex in vertices.iterkeys():
+          left = False
+  #start/end vertex    
+  vertices[terminator] = [(v, edgeCosts(terminator, v)) for v in vertices.iterkeys()]
+  
+  #add edges
+  for v in vertices.iterkeys():
     for adj in vertices.iterkeys():
-      if not vertex[2] == adj[2]:
-        if vertex[2] and vertex[1] == adj[1]:
-          vertices[vertex].append(adj)
-        else if not vertex[2]
-          vertices[vertex].append(adj)
+      if not v.word == adj.word:
+        #every node points to the terminator (end) 
+        if adj.isTerminator:
+          vertices[v].append((adj, edgeCosts(v, adj)))
+        #if vertex is unigram, can have edge is adj is at the left of the phrase
+        elif len(v.french) == 1 and adj.isLeft:
+          if (len(adj.french) == 2 and not adj.start + 1 == v.start) or len(adj.french) == 1: 
+            vertices[v].append((adj, edgeCosts(v, adj)))
+        #if bigram
+        else:
+          if not v.isLeft == adj.isLeft:
+            if v.isLeft and v.french == adj.french:
+              vertices[v].append((adj, edgeCosts(v, adj)))
+            elif not v.isLeft and not adj.start == v.start:
+              vertices[v].append((adj, edgeCosts(v, adj)))
 
-        
+  #transform AGTSP to ATSP
+  for fword in f:
+    numNodes = 0
+    for v in vertices.iterkeys():
+      if(v.word == fword):
+        numNodes+=1
 
+    foundFirst = False
+    first = None
+    first_edges = []
+    prev = None
+    last = None
+    for v in vertices.iterkeys():
+      if(v.word == fword):
+        if not foundFirst:
+          first = v
+          first_edges = vertices[first]
+          prev = v
+          foundFirst = True
+        else:
+          vertices[prev] = vertices[v]
+          vertices[prev].append((v, -numNodes))
+          prev = v
+        last = v
+    vertices[last] = vertices[first]
+    vertices[last].append((first, -numNodes))
+
+  #need to hold copies temporarily so that graph size doesn't change in loop
+  copies = {}
+  #transform ATSP to TSP
+  for v in vertices.iterkeys():
+    copy = vertex(v.word, v.french, v.english, v.tm_prob, v.start, v.isLeft, v.isTerminator, True)
+    copies[copy] = vertices[v]
+    vertices[v] = []
+    for u in vertices.iterkeys():
+      if v in vertices[u]:
+        vertices[v].append((vertex(u.word, u.french, u.english, u.tm_prob, u.start, u.isLeft, u.isTerminator, True), vertices[u][1]))
+    vertices[v].append((copy, -float('inf')))
+    copies[copy].append((v, -float('inf')))
+
+  for copy in copies.iterkeys():
+    vertices[copy] = copies[copy]  
+
+  #at this point vertices is the finished graph for sentence f
+  sys.stderr.write(".")
 
 
       

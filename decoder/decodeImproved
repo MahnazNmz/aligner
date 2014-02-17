@@ -53,7 +53,6 @@ for word in set(sum(french,())):
 
 sys.stderr.write("Decoding %s...\n" % (opts.input,))
 toPrint = True;
-d = 6
 for f in french:
   costs = estimate_costs(f)
   def remainingDifficulty(used, prev_index):
@@ -86,8 +85,7 @@ for f in french:
       if -h.logprob + remainingDifficulty(h.used, h.phrase_index[1]) > avg - (0.5 * sd):
         continue
       #look at every possible phrase
-      prev = h.phrase_index[1]
-      for j in xrange(h.phrase_index[1] - d if h.phrase_index[1] >= d else 0, h.phrase_index[1] + d if h.phrase_index[1] + d <= len(f) else len(f)):
+      for j in xrange(0, len(f)):
         for k in xrange(j + 1, len(f) + 1):
           if f[j:k] in tm and len(set(range(j,k)).intersection(h.used)) == 0:
             for phrase in tm[f[j:k]]:
@@ -104,12 +102,8 @@ for f in french:
                 stacks[i + (k - j)][lm_state] = new_hypothesis
 
   toPrint = False; 
-  i = 1
-  while(len(stacks[-i].values()) == 0 and i <= len(f)):
-    i+=1
-  if(i <= len(f)):
-    winner = max(stacks[-i].itervalues(), key=lambda h: h.logprob)
-  
+
+  winner = max(stacks[-1].itervalues(), key=lambda h: h.logprob)
   print extract_english(winner)
 
   if opts.verbose:
