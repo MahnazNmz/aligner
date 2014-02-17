@@ -45,6 +45,37 @@ def edgeCosts(v1, v2):
     jumps = abs(v1.start - v2.start)
     prob += -math.log(jumps**0.5)
 
+def minST(vertices, start):
+  pq = PriorityQueue()
+  marked = set()
+  distances = dict()
+  pred = dict()
+
+  #prims algorithm
+  for v in vertices.iterkeys():
+    distances[v] = float('inf')
+
+  distances[start] = 0
+  pq.buildHeap([(distances[v],v) for v in vertices.iterkeys()])
+
+  while not pq.isEmpty():
+    current = pq.delMin()
+    for next in vertices[current]:
+      newCost = edgeCosts(curent, next) + distance[current]
+      if v in pq and newCost < distance[next]:
+        pred[next] = current
+        distance[next] = newCost
+        pq.decreaseKey(next, newCost)
+
+  #convert pred list to vertex list
+  mst = {v:[] for v in vertices.iterkeys()}
+  for p in prev.iterkeys():
+    mst[prev[p]].append(p)
+
+  return mst
+
+
+
 
 vertex = namedtuple("vertex", "word, french, english, tm_prob, start, isLeft, isTerminator, isCopy") 
 sys.stderr.write("Decoding...\n")
@@ -127,9 +158,15 @@ for f in french:
     copies[copy].append((v, -float('inf')))
 
   for copy in copies.iterkeys():
-    vertices[copy] = copies[copy]  
+    vertices[copy] = copies[copy]
+
 
   #at this point vertices is the finished graph for sentence f
+
+  #find MST
+  mst = minST(vertices, first)
+
+
   sys.stderr.write(".")
 
 
