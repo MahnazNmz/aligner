@@ -5,7 +5,7 @@ import models
 import numpy
 import math
 from collections import namedtuple
-from pythonds.graphs import PriorityQueue
+
 
 optparser = optparse.OptionParser()
 optparser.add_option("-i", "--input", dest="input", default="data/input", help="File containing sentences to translate (default=data/input)")
@@ -57,20 +57,21 @@ def minST(vertices, start):
     distances[v] = float('inf')
 
   distances[start] = 0
-  pq.buildHeap([(distances[v], v) for v in vertices])
+  pq.buildHeap([(distances[v],v) for v in vertices.iterkeys()])
+
   while not pq.isEmpty():
     current = pq.delMin()
     for next in vertices[current]:
-      newCost = next[1] + distances[current]
-      if v in pq and newCost < distances[next[0]]:
-        pred[next[0]] = current
-        distances[next[0]] = newCost
-        pq.decreaseKey(next[0], newCost)
+      newCost = edgeCosts(curent, next) + distance[current]
+      if v in pq and newCost < distance[next]:
+        pred[next] = current
+        distance[next] = newCost
+        pq.decreaseKey(next, newCost)
 
   #convert pred list to vertex list
   mst = {v:[] for v in vertices.iterkeys()}
-  for p in pred.iterkeys():
-    mst[pred[p]].append(p)
+  for p in prev.iterkeys():
+    mst[prev[p]].append(p)
 
   return mst
 
@@ -171,13 +172,31 @@ for f in french:
   path = []
   stack = []
   stack.append(terminator)
-  while not len(stack) == 0:
+  while not stack.isEmpty():
     v = stack.pop()
     if not v in marked:
       marked.add(v)
-      path.append(v)
+      path.add(v)
       for adj in mst[v]:
         stack.append(adj)
+
+  # doesn't 'compile' yet
+  translation = ""   
+  prev == None   
+  for v in tour[1:-1]:
+    #ignore copies in the path
+    if v.isCopy:
+      continue
+    #ignore if node is in the same cluster
+    if not prev == None and prev.word == v.word:
+      continue
+    #ignore if next node is in the same phrase as prev
+    if prev.english == v.english and prev.french == v.french:
+      continue
+    translation += v.english
+    prev = v
+
+  print translation
 
 
   sys.stderr.write(".")
