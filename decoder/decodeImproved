@@ -1,0 +1,120 @@
+#!/usr/bin/env python
+import optparse
+import sys
+import models
+import numpy
+import math
+from collections import namedtuple
+
+optparser = optparse.OptionParser()
+optparser.add_option("-i", "--input", dest="input", default="data/input", help="File containing sentences to translate (default=data/input)")
+optparser.add_option("-t", "--translation-model", dest="tm", default="data/tm", help="File containing translation model (default=data/tm)")
+optparser.add_option("-l", "--language-model", dest="lm", default="data/lm", help="File containing ARPA-format language model (default=data/lm)")
+optparser.add_option("-n", "--num_sentences", dest="num_sents", default=sys.maxint, type="int", help="Number of sentences to decode (default=no limit)")
+optparser.add_option("-k", "--translations-per-phrase", dest="k", default=5, type="int", help="Limit on number of translations to consider per phrase (default=1)")
+optparser.add_option("-s", "--stack-size", dest="s", default=100, type="int", help="Maximum stack size (default=1)")
+optparser.add_option("-v", "--verbose", dest="verbose", action="store_true", default=False,  help="Verbose mode (default=off)")
+opts = optparser.parse_args()[0]
+
+def extract_english(h): 
+    return "" if h.predecessor is None else "%s%s " % (extract_english(h.predecessor), h.phrase.english)
+
+def estimate_costs(f):
+  #figure out 2d array problem
+  costs = [[0 for i in range(len(f))] for i in range(len(f))]
+  for length in range(1,len(f) + 1):
+    for start in range(0, len(f) - length):
+      end = start + length
+      costs[start][length - 1] = float('inf')
+      if f[start:end] in tm:
+        phrase = max(tm[f[start: end]], key=lambda p: p.logprob)
+        c =  phrase.logprob
+        state = lm.begin()
+        for word in phrase.english.split():
+          (state, word_prob) = lm.score(state, word)
+          c += word_prob
+        costs[start][length - 1] = c
+      for i in range(1, length):
+        if costs[start][i - 1] + costs[start + i][length - i - 1] < costs[start][length - 1]:
+          costs[start][length - 1] = costs[start][i - 1] + costs[start + i][length - i - 1]
+  return costs
+
+
+
+tm = models.TM(opts.tm, opts.k)
+lm = models.LM(opts.lm)
+french = [tuple(line.strip().split()) for line in open(opts.input).readlines()[:opts.num_sents]]
+
+# tm should translate unknown words as-is with probability 1
+for word in set(sum(french,())):
+  if (word,) not in tm:
+    tm[(word,)] = [models.phrase(word, 0.0)]
+
+
+sys.stderr.write("Decoding %s...\n" % (opts.input,))
+toPrint = True;
+d = 6
+for f in french:
+  costs = estimate_costs(f)
+  def remainingDifficulty(used, prev_index):
+    start = 0
+    cost = 0
+    max_jumps = 0
+    while(start < len(f)):
+      if (start not in used):
+        length = 1
+        jumps = abs(prev_index - start)
+        if jumps > max_jumps:
+          max_jumps = jumps 
+        while(start + length not in used and start + length < len(f)):
+          length+=1
+        cost += costs[start][length - 1]
+        start = start + length 
+      else:
+        start+=1
+    return abs(cost) + math.log(max_jumps)
+
+  hypothesis = namedtuple("hypothesis", "logprob, lm_state, predecessor, phrase, phrase_index, used")
+  initial_hypothesis = hypothesis(0.0, lm.begin(), None, None, (-1, -1), set())
+  stacks = [{} for _ in f] + [{}]
+  stacks[0][lm.begin()] = initial_hypothesis
+  for i, stack in enumerate(stacks[:-1]):
+    hyps = sorted(stack.itervalues(), key=lambda h: -h.logprob + remainingDifficulty(h.used, h.phrase_index[1]))[:opts.s]
+    avg = numpy.average([-h.logprob + remainingDifficulty(h.used, h.phrase_index[1]) for h in hyps])
+    sd = numpy.std([-h.logprob + remainingDifficulty(h.used, h.phrase_index[1]) for h in hyps])
+    for h in hyps: # prune
+      if -h.logprob + remainingDifficulty(h.used, h.phrase_index[1]) > avg - (0.5 * sd):
+        continue
+      #look at every possible phrase
+      prev = h.phrase_index[1]
+      for j in xrange(h.phrase_index[1] - d if h.phrase_index[1] >= d else 0, h.phrase_index[1] + d if h.phrase_index[1] + d <= len(f) else len(f)):
+        for k in xrange(j + 1, len(f) + 1):
+          if f[j:k] in tm and len(set(range(j,k)).intersection(h.used)) == 0:
+            for phrase in tm[f[j:k]]:
+              logprob = h.logprob + phrase.logprob
+              lm_state = h.lm_state
+              for word in phrase.english.split():
+                (lm_state, word_logprob) = lm.score(lm_state, word)
+                logprob += word_logprob
+              logprob += lm.end(lm_state) if i + (k - j) == len(f)  else 0.0
+              logprob += -math.log(abs(h.phrase_index[1] - j)**0.5)
+              used = h.used.union(set(range(j,k)))
+              new_hypothesis = hypothesis(logprob, lm_state, h, phrase, (j, k - 1), used)
+              if lm_state not in stacks[i + (k - j)] or stacks[i + (k - j)][lm_state].logprob < logprob: # second case is recombination
+                stacks[i + (k - j)][lm_state] = new_hypothesis
+
+  toPrint = False; 
+  i = 1
+  while(len(stacks[-i].values()) == 0 and i <= len(f)):
+    i+=1
+  if(i <= len(f)):
+    winner = max(stacks[-i].itervalues(), key=lambda h: h.logprob)
+  
+  print extract_english(winner)
+
+  if opts.verbose:
+    def extract_tm_logprob(h):
+      return 0.0 if h.predecessor is None else h.phrase.logprob + extract_tm_logprob(h.predecessor)
+    tm_logprob = extract_tm_logprob(winner)
+    sys.stderr.write("LM = %f, TM = %f, Total = %f\n" % 
+      (winner.logprob - tm_logprob, tm_logprob, winner.logprob))
