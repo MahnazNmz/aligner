@@ -183,7 +183,7 @@ for f in french:
   # doesn't 'compile' yet
   translation = ""   
   prev == None   
-  for v in tour[1:-1]:
+  for v in path[2:-2]:
     #ignore copies in the path
     if v.isCopy:
       continue
@@ -193,7 +193,7 @@ for f in french:
     #ignore if next node is in the same phrase as prev
     if prev.english == v.english and prev.french == v.french:
       continue
-    translation += v.english
+    translation += v.english + " "
     prev = v
 
   print translation
