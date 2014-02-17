@@ -30,20 +30,21 @@ for word in set(sum(french,())):
 
 def edgeCosts(v1, v2):
   if v2.isTerminator:
-    return lm.end(tuple(v1.english.split()[-2:]))
+    return -lm.end(tuple(v1.english.split()[-2:]))
   elif v1.french == v2.french:
     return 0
   else:
-    prob = v2.tm_prob
+    prob = -v2.tm_prob
     if v1.isTerminator:
       lm_state = lm.begin()
     else:
       lm_state = tuple(v1.english.split()[-2:])
     for word in v2.english.split():
       (lm_state, word_logprob) = lm.score(lm_state, word)
-      prob += word_logprob
+      prob += -word_logprob
     jumps = abs(v1.start - v2.start)
-    prob += -math.log(jumps**0.5)
+    prob += math.log(jumps**0.5)
+    return prob
 
 def minST(vertices, start):
   pq = PriorityQueue()
