@@ -5,6 +5,7 @@ import models
 import numpy
 import math
 from collections import namedtuple
+from pythonds.graphs import PriorityQueue
 
 
 optparser = optparse.OptionParser()
@@ -197,7 +198,6 @@ for f in french:
     prev = v
 
   print translation
-
 
   sys.stderr.write(".")
 
