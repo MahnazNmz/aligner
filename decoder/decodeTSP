@@ -164,7 +164,20 @@ for f in french:
   #at this point vertices is the finished graph for sentence f
 
   #find MST
-  mst = minST(vertices, first)
+  mst = minST(vertices, terminator)
+
+  #depth first preorder traversal of mst
+  marked = set()
+  path = []
+  stack = []
+  stack.append(terminator)
+  while not stack.isEmpty():
+    v = stack.pop()
+    if not v in marked:
+      marked.add(v)
+      path.add(v)
+      for adj in mst[v]:
+        stack.append(adj)
 
 
   sys.stderr.write(".")
