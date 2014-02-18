@@ -12,7 +12,7 @@ optparser = optparse.OptionParser()
 optparser.add_option("-i", "--input", dest="input", default="data/input", help="File containing sentences to translate (default=data/input)")
 optparser.add_option("-t", "--translation-model", dest="tm", default="data/tm", help="File containing translation model (default=data/tm)")
 optparser.add_option("-l", "--language-model", dest="lm", default="data/lm", help="File containing ARPA-format language model (default=data/lm)")
-optparser.add_option("-n", "--num_sentences", dest="num_sents", default=sys.maxint, type="int", help="Number of sentences to decode (default=no limit)")
+optparser.add_option("-n", "--num_sentences", dest="num_sents", default=1, type="int", help="Number of sentences to decode (default=no limit)")
 optparser.add_option("-k", "--translations-per-phrase", dest="k", default=5, type="int", help="Limit on number of translations to consider per phrase (default=1)")
 optparser.add_option("-s", "--stack-size", dest="s", default=100, type="int", help="Maximum stack size (default=1)")
 optparser.add_option("-v", "--verbose", dest="verbose", action="store_true", default=False,  help="Verbose mode (default=off)")
@@ -63,62 +63,63 @@ def minST(vertices, start):
   while not pq.isEmpty():
     current = pq.delMin()
     for next in vertices[current]:
-      newCost = edgeCosts(curent, next) + distance[current]
-      if v in pq and newCost < distance[next]:
-        pred[next] = current
-        distance[next] = newCost
+      newCost = next[1] + distances[current]
+      if v in pq and newCost < distances[next[0]]:
+        pred[next[0]] = current
+        distances[next[0]] = newCost
         pq.decreaseKey(next, newCost)
 
   #convert pred list to vertex list
   mst = {v:[] for v in vertices.iterkeys()}
-  for p in prev.iterkeys():
-    mst[prev[p]].append(p)
+  for p in pred.iterkeys():
+    mst[pred[p]].append(p)
 
   return mst
 
 
 
 
-vertex = namedtuple("vertex", "word, french, english, tm_prob, start, isLeft, isTerminator, isCopy") 
+vertex = namedtuple("vertex", "word, french, english, tm_prob, start, isLeft, isRight, isTerminator, isCopy") 
 sys.stderr.write("Decoding...\n")
 for f in french:
   vertices = {} 
-  terminator = vertex("", (), "", 0.0, -1, False, True, False)
+  terminator = vertex("", (), "", 0.0, -1, True, True, True, False)
   #unigrams
   for start in range(len(f)):
     for phrase in tm[f[start:start+1]]:
-      vertices[vertex(f[start], f[start:start+1], phrase.english, phrase.logprob, start, True, False, False)] = []
+      vertices[vertex(f[start], f[start:start+1], phrase.english, phrase.logprob, start, True, True, False, False)] = []
   #bigrams
   for start in range(len(f) - 1):
     if f[start:start+2] in tm:
       for phrase in tm[f[start:start+2]]:
         left = True
         for word in f[start:start+2]:
-          vertices[vertex(word, f[start:start+2], phrase.english, phrase.logprob, start, left, False, False)] = []
+          vertices[vertex(word, f[start:start+2], phrase.english, phrase.logprob, start, left, not left, False, False)] = []
           #only two values, left becomes false for right value
           left = False
   #start/end vertex    
-  vertices[terminator] = [(v, edgeCosts(terminator, v)) for v in vertices.iterkeys()]
+  vertices[terminator] = []
   
   #add edges
   for v in vertices.iterkeys():
     for adj in vertices.iterkeys():
-      if not v.word == adj.word:
-        #every node points to the terminator (end) 
-        if adj.isTerminator:
+      if not v == adj:
+        if v.isTerminator:
           vertices[v].append((adj, edgeCosts(v, adj)))
-        #if vertex is unigram, can have edge is adj is at the left of the phrase
-        elif len(v.french) == 1 and adj.isLeft:
-          if (len(adj.french) == 2 and not adj.start + 1 == v.start) or len(adj.french) == 1: 
-            vertices[v].append((adj, edgeCosts(v, adj)))
-        #if bigram
-        else:
-          if not v.isLeft == adj.isLeft:
-            if v.isLeft and v.french == adj.french:
-              vertices[v].append((adj, edgeCosts(v, adj)))
-            elif not v.isLeft and not adj.start == v.start:
-              vertices[v].append((adj, edgeCosts(v, adj)))
+        #every node points to the terminator (end) 
+        elif adj.isTerminator:
+          vertices[v].append((adj, edgeCosts(v, adj)))
+        elif v.isLeft and adj.isRight and v.french == adj.french and len(v.french) == len(adj.french) and len(v.french) == 2:
+          vertices[v].append((adj, edgeCosts(v,adj)))
+        elif v.isRight and adj.isLeft and not v.french == adj.french:
+          if len(v.french) == len(adj.french) and not v.word == adj.word:
+            vertices[v].append((v, edgeCosts(v, adj)))
+          elif len(v.french) == 1 and len(adj.french) == 2 and v.start not in range(adj.start,adj.start+2):
+            vertices[v].append((v, edgeCosts(v,adj)))
+          elif len(v.french) == 2 and len(adj.french) == 1 and adj.start not in range(v.start,v.start + 2):
+            vertices[v].append((v, edgeCosts(v,adj)))
 
+  sys.stderr.write(str(vertices))
   #transform AGTSP to ATSP
   for fword in f:
     numNodes = 0
@@ -150,18 +151,18 @@ for f in french:
   copies = {}
   #transform ATSP to TSP
   for v in vertices.iterkeys():
-    copy = vertex(v.word, v.french, v.english, v.tm_prob, v.start, v.isLeft, v.isTerminator, True)
+    copy = vertex(v.word, v.french, v.english, v.tm_prob, v.start, v.isLeft, v.isRight, v.isTerminator, True)
     copies[copy] = vertices[v]
     vertices[v] = []
     for u in vertices.iterkeys():
-      if v in vertices[u]:
-        vertices[v].append((vertex(u.word, u.french, u.english, u.tm_prob, u.start, u.isLeft, u.isTerminator, True), vertices[u][1]))
+      for uu in vertices[u]:
+        if v == uu[0]:
+          vertices[v].append((vertex(u.word, u.french, u.english, u.tm_prob, u.start, u.isLeft, u.isRight, u.isTerminator, True), uu[1]))
     vertices[v].append((copy, -float('inf')))
     copies[copy].append((v, -float('inf')))
 
   for copy in copies.iterkeys():
     vertices[copy] = copies[copy]
-
 
   #at this point vertices is the finished graph for sentence f
 
@@ -173,11 +174,11 @@ for f in french:
   path = []
   stack = []
   stack.append(terminator)
-  while not stack.isEmpty():
+  while not len(stack) == 0:
     v = stack.pop()
     if not v in marked:
       marked.add(v)
-      path.add(v)
+      path.append(v)
       for adj in mst[v]:
         stack.append(adj)
 
@@ -196,8 +197,6 @@ for f in french:
       continue
     translation += v.english + " "
     prev = v
-
-  print translation
 
   sys.stderr.write(".")
 
