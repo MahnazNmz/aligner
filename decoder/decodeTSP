@@ -67,7 +67,8 @@ def minST(vertices, start):
       if v in pq and newCost < distances[next[0]]:
         pred[next[0]] = current
         distances[next[0]] = newCost
-        pq.decreaseKey(next, newCost)
+        pq.decreaseKey(next[0], newCost)
+
 
   #convert pred list to vertex list
   mst = {v:[] for v in vertices.iterkeys()}
@@ -182,10 +183,9 @@ for f in french:
       for adj in mst[v]:
         stack.append(adj)
 
-  # doesn't 'compile' yet
   translation = ""   
   prev == None   
-  for v in path[2:-2]:
+  for v in path[1:-1]:
     #ignore copies in the path
     if v.isCopy:
       continue
@@ -199,11 +199,3 @@ for f in french:
     prev = v
 
   sys.stderr.write(".")
-
-
-      
-
-
-
-
-
