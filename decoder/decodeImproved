@@ -10,7 +10,7 @@ optparser = optparse.OptionParser()
 optparser.add_option("-i", "--input", dest="input", default="data/input", help="File containing sentences to translate (default=data/input)")
 optparser.add_option("-t", "--translation-model", dest="tm", default="data/tm", help="File containing translation model (default=data/tm)")
 optparser.add_option("-l", "--language-model", dest="lm", default="data/lm", help="File containing ARPA-format language model (default=data/lm)")
-optparser.add_option("-n", "--num_sentences", dest="num_sents", default=sys.maxint, type="int", help="Number of sentences to decode (default=no limit)")
+optparser.add_option("-n", "--num_sentences", dest="num_sents", default=10, type="int", help="Number of sentences to decode (default=no limit)")
 optparser.add_option("-k", "--translations-per-phrase", dest="k", default=5, type="int", help="Limit on number of translations to consider per phrase (default=1)")
 optparser.add_option("-s", "--stack-size", dest="s", default=100, type="int", help="Maximum stack size (default=1)")
 optparser.add_option("-v", "--verbose", dest="verbose", action="store_true", default=False,  help="Verbose mode (default=off)")
@@ -103,8 +103,45 @@ for f in french:
 
   toPrint = False; 
 
+
+  def getPhraseList(h):
+    l = []
+    l.append(h.phrase.english)
+    pred = h.predecessor
+    while (pred is not None and pred.phrase is not None):
+      l.append(pred.phrase.english)
+      pred = pred.predecessor
+    l.reverse()
+    return l
+
   winner = max(stacks[-1].itervalues(), key=lambda h: h.logprob)
-  print extract_english(winner)
+  state = lm.begin()
+  prob = 0.0
+  for w in extract_english(winner).split():
+    (state, w_prob) = lm.score(state, w)
+    prob += w_prob
+  prob += lm.end(state)
+
+  winnerList = getPhraseList(winner) 
+  for i in range(len(winnerList) - 1):
+    temp = winnerList[i]
+    winnerList[i] = winnerList[i + 1]
+    winnerList[i + 1] = temp
+    winnerWords = " ".join(winnerList).split()
+    currProb = 0.0
+    state = lm.begin()
+    for w in winnerWords:
+      (state, w_prob) = lm.score(state, w)
+      currProb+=w_prob
+    currProb+= lm.end(state)
+    if currProb > prob:
+      prob = currProb
+    else:
+      temp = winnerList[i]
+      winnerList[i] = winnerList[i + 1]
+      winnerList[i + 1] = temp
+
+  print " ".join(winnerList)
 
   if opts.verbose:
     def extract_tm_logprob(h):

@@ -110,17 +110,16 @@ for f in french:
         #every node points to the terminator (end) 
         elif adj.isTerminator:
           vertices[v].append((adj, edgeCosts(v, adj)))
-        elif v.isLeft and adj.isRight and v.french == adj.french and len(v.french) == len(adj.french) and len(v.french) == 2:
+        elif v.isLeft and adj.isRight and v.french == adj.french and len(v.french) == 2:
           vertices[v].append((adj, edgeCosts(v,adj)))
         elif v.isRight and adj.isLeft and not v.french == adj.french:
           if len(v.french) == len(adj.french) and not v.word == adj.word:
-            vertices[v].append((v, edgeCosts(v, adj)))
+            vertices[v].append((adj, edgeCosts(v, adj)))
           elif len(v.french) == 1 and len(adj.french) == 2 and v.start not in range(adj.start,adj.start+2):
-            vertices[v].append((v, edgeCosts(v,adj)))
+            vertices[v].append((adj, edgeCosts(v,adj)))
           elif len(v.french) == 2 and len(adj.french) == 1 and adj.start not in range(v.start,v.start + 2):
-            vertices[v].append((v, edgeCosts(v,adj)))
+            vertices[v].append((adj, edgeCosts(v,adj)))
 
-  sys.stderr.write(str(vertices))
   #transform AGTSP to ATSP
   for fword in f:
     numNodes = 0
@@ -197,5 +196,7 @@ for f in french:
       continue
     translation += v.english + " "
     prev = v
-
+  print translation
+  print path
+  print mst
   sys.stderr.write(".")
