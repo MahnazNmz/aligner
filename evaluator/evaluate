@@ -3,6 +3,7 @@ import optparse
 import glob
 import os
 from collections import Counter # multiset represented by dictionary
+import sys
 
 # This function simply computes the unigram precision of the MT system 
 # output against the human reference translation. That is, it counts up the 
@@ -11,8 +12,24 @@ from collections import Counter # multiset represented by dictionary
 # The goal of this assignment: find a better way to score the system!
 # Note: system and ref are both lists of tuples of words (sentences).
 def score(system, ref):
-  matched_words = sum([sum((Counter(s) & Counter(r)).values()) for (s,r) in zip(system, ref)])
-  return float(matched_words) / sum([len(sentence) for sentence in system])
+	total_score = 0
+	for (s,r) in zip(system, ref):
+		sent_prod = 1
+		for i in range(1,5):
+			ref_set = Counter()
+			sys_set = Counter()
+			for j in range(0, len(r) - i):
+				ref_gram = " ".join(r[j:j +i ])
+				ref_set[ref_gram] = ref_set[ref_gram] + 1
+			for k in range(0, len(s) - i):
+				sys_gram = " ".join(r[k:k + i])
+				sys_set[sys_gram] = sys_set[sys_gram] + 1
+			sent_prod = sent_prod * sum((ref_set & sys_set).values())
+		brev_pen = min(1, (float(len(s))/len(r)))
+		sent_prod = sent_prod * brev_pen
+		total_score = total_score + sent_prod
+	return total_score
+
  
 optparser = optparse.OptionParser()
 optparser.add_option("-d", "--data-dir", dest="data", default="data/dev", help="Directory containing system outputs")
@@ -24,4 +41,6 @@ ref = [line.split() for line in open(reference)]
 # read and score each system and output ordered by score
 sys_scores = [(os.path.basename(f), score([line.split() for line in open(f)], ref)) for f in glob.glob(opts.data + "/*") if f != reference and f != source]
 for (sysname, score) in sorted(sys_scores, key=lambda x: -x[1]):
-  print sysname
+	if sysname == "output":
+		sys.stderr.write("output???")
+	print sysname
