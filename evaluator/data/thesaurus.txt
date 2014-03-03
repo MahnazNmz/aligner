@@ -1,0 +1,633 @@
+abject: scummy, contemptible, miserable
+able: capable
+absolute: perfect, complete
+abundant: plentiful
+accepting: confirming, positive
+achromatic: white
+acrimonious: resentful, bitter
+active: vigorous
+actual: genuine, real
+addicted: hooked
+agile: nimble, spry, quick
+alien: foreign, exotic
+alike: like, similar
+alive: live
+all-including: comprehensive
+alone: lone, solitary, lonely
+aloof: distant
+amatory: amorous, romantic
+amber: yellowish
+ambiguous: equivocal
+amorous: amatory, romantic
+ample: sizable, capacious
+amusing: laughable, funny
+annual: yearly
+antsy: itchy, fidgety, restless
+appealing: likeable, sympathetic
+approval: popular
+approving: encouraging, favorable
+arbitrary: random
+arrogant: self-important
+articulate: eloquent, well-spoken
+artificial: unreal, unnatural
+assertive: self-assured
+astonishing: astounding, staggering
+astounding: staggering, astonishing
+at: forward
+atomic: nuclear
+atrocious: heinous, monstrous
+attractive: cute
+auxiliary: subsidiary, supplementary
+available: obtainable
+aware: conscious
+awful: dreadful, terrible
+bad: spoiled, spoilt
+banal: commonplace, trivial
+barbarous: brutal, cruel
+belated: tardy, late
+bendable: flexible
+beneficial: salutary, good
+biased: partial, unfair
+big: large
+bitter: bitter-tasting
+bitter-tasting: bitter
+black: achromatic
+bland: tasteless, insipid, flavorless
+blank: empty
+blemished: imperfect, faulty, flawed
+blind: unsighted
+blonde: light-haired
+blue: depressed
+blunt: candid, forthright, frank
+boring: dull
+brave: courageous, fearless
+bright: clever, smart
+brutal: barbarous, cruel
+candid: blunt, forthright, frank
+capable: able
+capacious: sizable, ample
+caucasian: white
+certain: sure
+chatty: gabby, garrulous, talkative
+cheap: inexpensive
+chief: primary, principal, main
+childish: infantile
+circular: round
+clean: neat, orderly, tidy
+clean-handed: guiltless, innocent
+clear: well-defined
+clever: bright, smart
+close: near
+closed: shut, unopen
+co-operative: cooperative
+coarse: harsh
+comfortable: comfy
+comfy: comfortable
+common: mutual
+commonplace: banal, trivial
+complete: perfect
+complex: complicated
+complicated: complex
+complimentary: costless, gratis, free
+comprehensive: all-including
+concluding: final, terminal, last
+concrete: material
+confirming: accepting, positive
+conscious: aware
+considerate: thoughtful
+constant: unending, incessant
+constrained: constricted, constricting, tight
+constricted: constrained, constricting, tight
+constricting: constrained, constricted, tight
+contemptible: abject, scummy, miserable
+content: contented
+contented: content
+continuous: uninterrupted
+cool: unenthusiastic, unfriendly, unresponsive
+cooperative: co-operative
+correct: right
+cosmetic: ornamental, decorative
+costless: complimentary, gratis, free
+courageous: fearless, brave
+courteous: polite
+covetous: envious, jealous
+crappy: lousy, shitty, stinking, stinky, rotten
+crude: primitive
+cruel: brutal, barbarous
+cultural: ethnic
+cute: attractive
+dangerous: unsafe
+dead: inanimate
+deadly: lethal
+decayed: rotted, rotten
+decent: square, honest, fair, straight
+decisive: determining
+decorative: cosmetic, ornamental
+deep: profound
+defective: bad
+definite: precise, explicit
+delicate: fragile, frail, sensitive
+delicious: tasty
+delightful: pleasant
+dependable: reliable
+depressed: blue
+descriptive: explicit, graphic
+determining: decisive
+different: unlike, dissimilar
+difficult: hard
+diffident: timid, shy
+digital: discrete
+diplomatic: diplomatical, suave
+diplomatical: suave, diplomatic
+dirty: obscene, indecent
+disagreeable: unpleasant
+disconfirming: negative
+discreet: prudent, restrained
+discrepant: incongruous
+discrete: digital
+dissimilar: unlike, different
+distant: aloof
+dreadful: terrible, awful
+due: owed
+dull: boring
+dynamic: dynamical
+dynamical: dynamic
+effective: effectual, efficacious
+effectual: efficacious, effective
+efficacious: effectual, effective
+efficient: practical
+elderly: old
+elegant: refined, tasteful
+eloquent: well-spoken, articulate
+empiric: empirical
+empirical: empiric
+empty: blank
+encouraging: approving, favorable
+endmost: terminal
+envious: covetous, jealous
+equal: like, equivalent, same
+equitable: just
+equivalent: like, same, equal
+equivocal: ambiguous
+eternal: everlasting, perpetual, unending
+ethnic: cultural
+even: level, flush
+everlasting: perpetual, unending, eternal
+evil: immoral, bad
+exact: precise
+existent: actual, real
+exotic: unusual
+experienced: knowledgeable
+explicit: descriptive, graphic
+expressed: explicit
+extinct: non-existent
+fair: square, honest, decent, straight
+fashionable: stylish
+fastidious: finicky
+fatigued: tired
+faulty: imperfect, blemished, flawed
+favorable: encouraging, approving
+fearless: courageous, brave
+feasible: practicable, workable, viable
+feeling: gentle, sympathetic, tender
+feminine: womanly
+fidgety: antsy, itchy, restless
+final: concluding, terminal, last
+financial: fiscal
+finicky: fussy, particular
+finished: ruined
+firm: strong
+first: fresh, unusual, original
+fiscal: financial
+fit: healthy
+flavorless: tasteless, insipid, bland
+flawed: imperfect, blemished, faulty
+flexible: bendable
+flush: level, even
+foolhardy: reckless
+foreign: alien, exotic
+forthright: candid, blunt, frank
+forward: at
+fragile: frail, sensitive, delicate
+fragrant: pleasant-smelling
+frail: fragile, sensitive, delicate
+frank: candid, blunt, forthright
+free: complimentary, costless, gratis
+fresh: unusual, first, original
+frozen: unthawed
+full: replete
+funny: amusing, laughable
+fussy: finicky, particular
+gabby: chatty, garrulous, talkative
+garrulous: chatty, gabby, talkative
+gay: homosexual
+generative: productive
+genetic: genetical
+genetical: genetic
+gentle: sympathetic, feeling, tender
+genuine: actual, real
+gifted: talented
+global: universal, worldwide
+gluey: glutinous, gummy, sticky
+glutinous: gluey, gummy, sticky
+good: just, upright, virtuous
+grand: luxurious, opulent, sumptuous
+graphic: pictorial, lifelike, vivid
+grateful: thankful
+gratis: complimentary, costless, free
+great: outstanding
+green: unripe, unripened
+gregarious: sociable
+grotesque: monstrous
+guiltless: clean-handed, innocent
+gummy: gluey, glutinous, sticky
+hard: tough, rough, tough
+harmful: noxious
+harsh: coarse
+healthy: fit
+heinous: atrocious, monstrous
+helpless: incapacitated
+hilarious: uproarious
+homosexual: gay
+honest: square, fair, decent, straight
+hooked: addicted
+hot: vehemence, passion
+huge: immense, vast
+ignorant: naive, unsophisticated
+ill: sick
+ill-famed: infamous, notorious
+illegitimate: illicit, unlawful
+illicit: illegitimate, unlawful
+immense: vast, huge
+immoral: evil, bad
+immune: resistant
+impartial: fair
+imperfect: blemished, faulty, flawed
+impermanent: temporary
+impertinent: insolent, impudent, sassy, fresh
+implicit: inexplicit
+important: significant
+improbable: unlikely
+impudent: insolent, impertinent, sassy, fresh
+inactive: motionless, static, still
+inanimate: dead
+incapable: incompetent
+incapacitated: helpless
+incessant: unending, constant
+incompetent: incapable
+incongruous: discrepant
+incredible: unbelievable
+indecent: obscene, dirty
+independent: separate
+individual: separate, single
+indolent: otiose, slothful, work-shy, lazy
+indoor: inside
+inexpensive: cheap
+inexplicit: implicit
+infamous: ill-famed, notorious
+infantile: childish
+infrequent: uncommon, rare
+initial: first
+innocent: guiltless, clean-handed
+inside: indoor
+insipid: tasteless, flavorless, bland
+insolent: impertinent, impudent, sassy, fresh
+interactive: synergistic
+invisible: unseeable
+itchy: antsy, fidgety, restless
+jealous: covetous, envious
+judicial: juridical, juridic
+juridic: juridical, judicial
+juridical: juridic, judicial
+just: equitable
+knowledgeable: experienced
+laic: lay, secular
+large: big
+last: concluding, final, terminal
+lasting: persistent
+late: belated, tardy
+latest: newest, up-to-date
+laughable: amusing, funny
+lay: laic, secular
+lazy: indolent, otiose, slothful, work-shy
+lean: thin
+lethal: deadly
+level: flush, even
+lifelike: pictorial, vivid, graphic
+light: bright
+light-colored: light
+light-haired: blonde
+like: alike, similar
+likeable: appealing, sympathetic
+likely: probable, plausible
+linear: one-dimensional
+little: small
+live: unrecorded
+lone: alone, solitary, lonely
+lonely: alone, lone, solitary
+lousy: crappy, shitty, stinking, stinky, rotten
+luxurious: opulent, sumptuous, grand
+main: chief, primary, principal
+marine: nautical, maritime
+maritime: nautical, marine
+material: concrete
+mature: ripe
+maximal: maximum
+maximum: maximal
+mild: moderate
+mindful: aware
+minimal: minimum
+minimum: minimal
+miserable: abject, scummy, contemptible
+moderate: mild
+monstrous: grotesque
+motionless: inactive, static, still
+muggy: sticky, steamy
+mutual: reciprocal
+naive: unsophisticated, ignorant
+narrow: narrow-minded
+narrow-minded: narrow
+nautical: maritime, marine
+near: close
+neat: orderly, clean, tidy
+negative: disconfirming
+nervous: skittish
+neural: nervous
+new: unfamiliar
+newest: up-to-date, latest
+nimble: spry, quick, agile
+non-existent: extinct
+nonalcoholic: soft
+nonindulgent: severe, strict
+nonsubjective: objective
+notorious: ill-famed, infamous
+noxious: harmful
+nuclear: atomic
+obese: overweight
+objective: nonsubjective
+obscene: indecent, dirty
+obscure: unknown
+obstinate: stubborn
+obtainable: available
+ocular: optic, optical, visual
+old: elderly
+one-dimensional: linear
+open: overt
+optic: ocular, optical, visual
+optical: ocular, optic, visual
+opulent: luxurious, sumptuous, grand
+orderly: neat, clean, tidy
+original: fresh, unusual, first
+ornamental: cosmetic, decorative
+otiose: indolent, slothful, work-shy, lazy
+out-of-door: outdoor, outside
+outdoor: out-of-door, outside
+outside: outdoor, out-of-door
+outstanding: great
+overt: open
+overweight: obese
+owed: due
+paralytic: paralyzed
+paralyzed: paralytic
+partial: biased, unfair
+particular: peculiar, special
+passion: vehemence, hot
+passive: inactive
+peculiar: special, particular
+perfect: complete
+permanent: lasting
+perpendicular: vertical
+perpetual: everlasting, unending, eternal
+persistent: lasting
+petty: small-minded
+pictorial: lifelike, vivid, graphic
+plain: simple
+plausible: probable, likely
+pleasant: delightful
+pleasant-smelling: fragrant
+plentiful: abundant
+polite: courteous
+popular: approval
+positive: accepting, confirming
+possible: potential
+potent: strong
+potential: possible
+practicable: feasible, workable, viable
+practical: efficient
+precise: exact
+premature: untimely
+prepared: ready
+primary: chief, principal, main
+primitive: crude
+principal: chief, primary, main
+probable: plausible, likely
+produced: fresh
+productive: generative
+profound: deep
+proper: suitable
+protected: secure
+prudent: restrained, discreet
+pure: sinless
+quenched: slaked, satisfied
+quick: nimble, spry, agile
+quiescent: quiet
+quiet: quiescent
+random: arbitrary
+rare: infrequent, uncommon
+ready: prepared
+real: actual, genuine
+reasonable: sensible
+reciprocal: mutual
+reckless: foolhardy
+refined: tasteful, elegant
+reliable: dependable
+replete: full
+resentful: acrimonious, bitter
+resistant: immune
+restless: antsy, itchy, fidgety
+restrained: prudent, discreet
+right: correct
+rigid: taut, tense
+ripe: mature
+romantic: amatory, amorous
+rotted: decayed, rotten
+rotten: crappy, lousy, shitty, stinking, stinky
+rough: tough, hard, tough
+round: circular
+ruined: finished
+salutary: beneficial, good
+same: like, equivalent, equal
+sassy: insolent, impertinent, impudent, fresh
+satisfied: quenched, slaked
+scummy: abject, contemptible, miserable
+secular: laic, lay
+secure: unattackable, strong
+see-through: sheer, transparent
+seeable: visible
+self-assured: assertive
+self-conceited: swollen-headed, vain
+self-generated: spontaneous
+self-important: arrogant
+sensible: reasonable
+sensitive: fragile, frail, delicate
+separate: individual, single
+serious: sober
+severe: nonindulgent, strict
+sheer: see-through, transparent
+shitty: crappy, lousy, stinking, stinky, rotten
+shut: unopen, closed
+shy: timid, diffident
+sick: ill
+significant: important
+silent: quiet
+similar: alike, like
+simple: plain
+sincere: honest
+single: individual, separate
+sinless: pure
+sizable: capacious, ample
+skilled: skillful
+skillful: skilled
+skittish: nervous
+slaked: quenched, satisfied
+slippery: slippy
+slippy: slippery
+slothful: indolent, otiose, work-shy, lazy
+small: little
+small-minded: petty
+smart: clever, bright
+sober: serious
+sociable: gregarious
+socialist: socialistic
+socialistic: socialist
+soft: nonalcoholic
+soiled: unclean, dirty
+solitary: alone, lone, lonely
+special: peculiar, particular
+spoiled: spoilt, bad
+spoilt: spoiled, bad
+spontaneous: self-generated
+spry: nimble, quick, agile
+square: honest, fair, decent, straight
+staggering: astounding, astonishing
+static: inactive, motionless, still
+steadfast: unwavering, constant
+steamy: sticky, muggy
+sticky: steamy, muggy
+still: inactive, motionless, static
+stinking: crappy, lousy, shitty, stinky, rotten
+stinky: crappy, lousy, shitty, stinking, rotten
+straight: square, honest, fair, decent
+strange: unusual
+strategic: strategical
+strategical: strategic
+strict: severe, nonindulgent
+strong: secure, unattackable
+stubborn: obstinate
+stylish: fashionable
+suave: diplomatical, diplomatic
+subsidiary: auxiliary, supplementary
+suitable: proper
+sumptuous: luxurious, opulent, grand
+supplementary: auxiliary, subsidiary
+sure: certain
+sweet: sweet-tasting
+sweet-tasting: sweet
+swollen-headed: self-conceited, vain
+sympathetic: gentle, feeling, tender
+synergistic: interactive
+talented: gifted
+talkative: chatty, gabby, garrulous
+tardy: belated, late
+tasteful: refined, elegant
+tasteless: insipid, flavorless, bland
+tasty: delicious
+taut: rigid, tense
+temporary: impermanent
+tender: gentle, sympathetic, feeling
+tense: taut, rigid
+terminal: endmost
+terrible: dreadful, awful
+thankful: grateful
+thin: lean
+thoughtful: considerate
+tidy: neat, orderly, clean
+tight: constrained, constricted, constricting
+timid: diffident, shy
+tired: fatigued
+tough: hard, rough, tough
+transparent: see-through, sheer
+trivial: banal, commonplace
+unattackable: secure, strong
+unaware: unwitting
+unbelievable: incredible
+unclean: soiled, dirty
+uncommon: infrequent, rare
+undefined: vague
+unending: everlasting, perpetual, eternal
+unenthusiastic: unfriendly, unresponsive, cool
+unequal: unlike
+unequaled: unparalleled, unique
+unfair: partial, biased
+unfamiliar: new
+unfriendly: unenthusiastic, unresponsive, cool
+uniform: unvarying
+uninterrupted: continuous
+unique: unequaled, unparalleled
+universal: worldwide, global
+unknown: obscure
+unlawful: illegitimate, illicit
+unlike: unequal
+unlikely: improbable
+unmarried: single
+unnatural: unreal, artificial
+unopen: shut, closed
+unparalleled: unequaled, unique
+unpleasant: disagreeable
+unprocessed: unrefined, crude
+unreal: unnatural, artificial
+unrecorded: live
+unrefined: unprocessed, crude
+unresponsive: unenthusiastic, unfriendly, cool
+unripe: unripened, green
+unripened: unripe, green
+unsafe: dangerous
+unseeable: invisible
+unsighted: blind
+unsmooth: rough
+unsophisticated: naive, ignorant
+untamed: wild
+unthawed: frozen
+untimely: premature
+unusual: strange
+unvarying: uniform
+unwavering: steadfast, constant
+unwitting: unaware
+up-to-date: newest, latest
+upright: just, virtuous, good
+uproarious: hilarious
+useful: utile
+utile: useful
+vague: undefined
+vain: self-conceited, swollen-headed
+vast: immense, huge
+vehemence: passion, hot
+vertical: perpendicular
+viable: feasible, practicable, workable
+vigorous: active
+virtuous: just, upright, good
+visible: seeable
+visual: ocular, optic, optical
+vivid: pictorial, lifelike, graphic
+well-defined: clear
+well-spoken: eloquent, articulate
+white: caucasian
+wild: untamed
+womanly: feminine
+work-shy: indolent, otiose, slothful, lazy
+workable: feasible, practicable, viable
+worldwide: universal, global
+yearly: annual
+yellowish: amber
+young: youthful
+youthful: young
