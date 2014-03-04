@@ -56,9 +56,9 @@ def verbScore(system, ref):
 	for s in systemVerbs
 		for r in refVerbs
 			if len(s[1] & r[1]) != 0:
-				commonClass = [(s[0], r[0])]
+				commonClass.append((s[0], r[0]))
 
-	
+
 
 
  
