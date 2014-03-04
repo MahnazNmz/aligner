@@ -4,6 +4,8 @@ import glob
 import os
 from collections import Counter # multiset represented by dictionary
 import sys
+import ntlk
+from nltk.corpus import verbnet
 
 # This function simply computes the unigram precision of the MT system 
 # output against the human reference translation. That is, it counts up the 
@@ -19,16 +21,45 @@ def score(system, ref):
 			ref_set = Counter()
 			sys_set = Counter()
 			for j in range(0, len(r) - i + 1):
-				ref_gram = " ".join(r[j:j +i ])
+				ref_gram = " ".join(r[j:j + i])
 				ref_set[ref_gram] = ref_set[ref_gram] + 1
 			for k in range(0, len(s) - i + 1):
 				sys_gram = " ".join(r[k:k + i])
+				if i == 1:
+				  sys_set[t] = sys_set[t] + 1 for t in thesaurus[sys_gram]
 				sys_set[sys_gram] = sys_set[sys_gram] + 1
 			sent_prod = sent_prod * sum((ref_set & sys_set).values())
 		brev_pen = min(1, (float(len(s))/len(r)))
 		sent_prod = sent_prod * brev_pen
 		total_score = total_score + sent_prod
 	return total_score
+
+def lexical(system, ref):
+	sysCounter = Counter(system)
+	refCounter = Counter(ref)
+	num =  len(sysCounter & refCounter)
+	den = float((len(sysCounter) * len(refCounter)) ** 0.5)
+	return num/den
+
+def verbScore(system, ref):
+	systemVerbs = []
+	refVerbs = []
+	commonClass = []
+	for (s,r) is zip(system,ref):
+		sClass = verbnet.classids(lemma=s)
+		rClass = verbnet.classids(lemma=r)
+		if len(sClass) != 0:
+			systemVerbs.append((s,sClass))
+		if len(verbnet.classids(lemma=r)) != 0:
+			refVerbs.append((r,rClass))
+
+	for s in systemVerbs
+		for r in refVerbs
+			if len(s[1] & r[1]) != 0:
+				commonClass = [(s[0], r[0])]
+
+	
+
 
  
 optparser = optparse.OptionParser()
