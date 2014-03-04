@@ -4,6 +4,8 @@ import glob
 import os
 from collections import Counter # multiset represented by dictionary
 import sys
+from nltk.stem.lancaster import LancasterStemmer
+from nltk.corpus import wordnet
 
 # This function simply computes the unigram precision of the MT system 
 # output against the human reference translation. That is, it counts up the 
@@ -12,22 +14,71 @@ import sys
 # The goal of this assignment: find a better way to score the system!
 # Note: system and ref are both lists of tuples of words (sentences).
 def score(system, ref):
+	st = LancasterStemmer()
 	total_score = 0
 	for (s,r) in zip(system, ref):
-		sent_prod = 1
-		for i in range(1,min(5, len(s) + 1)):
+		ref_set = Counter(r)
+		sys_set = Counter(s)
+		numMatches = 0
+		#exact count
+		for sw in sys_set.keys():
+			for i in range(sys_set[sw]):
+				if sw in ref_set.keys() and ref_set[sw] > 0:
+					numMatches += 1
+					ref_set[sw] = ref_set[sw] - 1
+					sys_set[sw] = sys_set[sw] - 1
+
+
+
+		#create mapping of stemmed words to original word
+		stemmed_ref = {}
+		for refword in ref_set.keys():
+			stemmed_ref[st.stem(refword)] = refword
+
+		#stemmed counts	
+		for sw in sys_set.keys():
+			for i in range(sys_set[sw]):
+				if st.stem(sw) in stemmed_ref.keys() and ref_set[stemmed_ref[st.stem(sw)]] > 0:
+					numMatches += 1
+					ref_set[stemmed_ref[st.stem(sw)]] = ref_set[stemmed_ref[st.stem(sw)]] - 1
+					sys_set[sw] = sys_set[sw] - 1
+
+
+		#synonyms
+		for sw in sys_set.keys():
+			for i in range(sys_set[sw]):
+				syns = wordnet.synsets(sw)
+				for syn in syns:
+					for l in syn.lemmas:
+						if l.name in ref_set.keys() and ref_set[l.name] > 0:
+							numMatches += 1
+							ref_set[l.name] += -1
+							sys_set[sw] += -1
+
+
+
+		p = float(numMatches)/len(s)
+		r = float(numMatches)/len(r)
+
+
+		total_score += r
+
+
+
+		'''for i in range(1,min(5, len(s) + 1)):
 			ref_set = Counter()
 			sys_set = Counter()
 			for j in range(0, len(r) - i + 1):
-				ref_gram = " ".join(r[j:j +i ])
+				ref_gram = " ".join(r[j:j + i])
 				ref_set[ref_gram] = ref_set[ref_gram] + 1
 			for k in range(0, len(s) - i + 1):
 				sys_gram = " ".join(r[k:k + i])
 				sys_set[sys_gram] = sys_set[sys_gram] + 1
 			sent_prod = sent_prod * sum((ref_set & sys_set).values())
+
 		brev_pen = min(1, (float(len(s))/len(r)))
 		sent_prod = sent_prod * brev_pen
-		total_score = total_score + sent_prod
+		total_score = total_score + sent_prod'''
 	return total_score
 
  
