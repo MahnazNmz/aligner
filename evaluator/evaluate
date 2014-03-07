@@ -56,29 +56,10 @@ def score(system, ref):
 							sys_set[sw] += -1
 
 
-
-		p = float(numMatches)/len(s)
 		r = float(numMatches)/len(r)
-
 
 		total_score += r
 
-
-
-		'''for i in range(1,min(5, len(s) + 1)):
-			ref_set = Counter()
-			sys_set = Counter()
-			for j in range(0, len(r) - i + 1):
-				ref_gram = " ".join(r[j:j + i])
-				ref_set[ref_gram] = ref_set[ref_gram] + 1
-			for k in range(0, len(s) - i + 1):
-				sys_gram = " ".join(r[k:k + i])
-				sys_set[sys_gram] = sys_set[sys_gram] + 1
-			sent_prod = sent_prod * sum((ref_set & sys_set).values())
-
-		brev_pen = min(1, (float(len(s))/len(r)))
-		sent_prod = sent_prod * brev_pen
-		total_score = total_score + sent_prod'''
 	return total_score
 
  
