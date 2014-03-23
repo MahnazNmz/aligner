@@ -66,18 +66,5 @@ en = mlpy.ElasticNetC(lmb=0.01, eps=0.001)
 en.learn(x,y)
 w = en.w()
 
-'''for i in xrange(opts.epochs):
-  sys.stderr.write("Epoch %d..." % i)
-  (observations, errors) = (0, 0.0)
-  for nbest in nbests:
-    for c1, c2 in sorted(V(nbest), key=lambda (c1,c2): c2.smoothed_bleu-c1.smoothed_bleu)[:opts.xi]: # Figure 4 sampling algorithm
-      x = [c1j-c2j for c1j,c2j in zip(c1.features, c2.features)]
-      if sum([xj*wj for xj,wj in zip(x,w)]) <= 0:
-        errors += 1
-        w = [(opts.eta*xj)+wj for xj,wj in zip(x,w)]
-      observations += 1
-      if observations % 2000 == 0:
-        sys.stderr.write(".")
-  sys.stderr.write("classification error rate: %f (%d observations)\n" % (errors/observations, observations))'''
   
-print "\n".join([str(weight) for weight in wbest])
+print "\n".join([str(weight) for weight in w])
