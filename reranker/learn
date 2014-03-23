@@ -11,7 +11,7 @@ from collections import namedtuple
 # Hopkins & May (2011): http://aclweb.org/anthology-new/D/D11/D11-1125.pdf
 #
 # Differences from paper:
-# -Does not include candidate generation (candidates are assumed to be given)
+# -Does not inclucd ..de candidate generation (candidates are assumed to be given)
 # -Uses perceptron instead of maxent for classification
 
 translation_candidate = namedtuple("candidate", "features, smoothed_bleu")
@@ -42,6 +42,31 @@ for n, line in enumerate(open(opts.nbest)):
     sys.stderr.write(".")
 sys.stderr.write("\n")
 
+def findCorrect(wbest):
+  correct = 0
+  for nbest in nbests:
+    def V():
+      for n1 in nbest:
+        for n2 in nbest:
+          if n1 != n2 and math.fabs(n1.smoothed_bleu - n2.smoothed_bleu) > opts.alpha:
+            yield (n1, n2) if n1.smoothed_bleu > n2.smoothed_bleu else (n2, n1)
+
+    for c1, c2 in sorted(V(), key=lambda (c1,c2): c2.smoothed_bleu-c1.smoothed_bleu)[:opts.xi]: # Figure 4 sampling algorithm
+      x = [c1j-c2j for c1j,c2j in zip(c1.features, c2.features)]
+      if sum([xj*wj for xj,wj in zip(x,wbest)]) > 0:
+        correct += 1
+  return correct
+
+def V(nbest):
+  for _ in xrange(opts.tau):
+    c1 = random.choice(nbest)
+    c2 = random.choice(nbest)
+    if c1 != c2 and math.fabs(c1.smoothed_bleu - c2.smoothed_bleu) > opts.alpha:
+      yield (c1, c2) if c1.smoothed_bleu > c2.smoothed_bleu else (c2, c1)
+
+wbest = [0.0 for _ in xrange(len(nbests[0][0].features))]
+maxCorrect = findCorrect(wbest)
+
 w = [0.0 for _ in xrange(len(nbests[0][0].features))]
 random.seed(opts.seed)
 
@@ -50,13 +75,7 @@ for i in xrange(opts.epochs):
   sys.stderr.write("Epoch %d..." % i)
   (observations, errors) = (0, 0.0)
   for nbest in nbests:
-    def V():
-      for _ in xrange(opts.tau):
-        c1 = random.choice(nbest)
-        c2 = random.choice(nbest)
-        if c1 != c2 and math.fabs(c1.smoothed_bleu - c2.smoothed_bleu) > opts.alpha:
-          yield (c1, c2) if c1.smoothed_bleu > c2.smoothed_bleu else (c2, c1)
-    for c1, c2 in sorted(V(), key=lambda (c1,c2): c2.smoothed_bleu-c1.smoothed_bleu)[:opts.xi]: # Figure 4 sampling algorithm
+    for c1, c2 in sorted(V(nbest), key=lambda (c1,c2): c2.smoothed_bleu-c1.smoothed_bleu)[:opts.xi]: # Figure 4 sampling algorithm
       x = [c1j-c2j for c1j,c2j in zip(c1.features, c2.features)]
       if sum([xj*wj for xj,wj in zip(x,w)]) <= 0:
         errors += 1
@@ -65,5 +84,9 @@ for i in xrange(opts.epochs):
       if observations % 2000 == 0:
         sys.stderr.write(".")
   sys.stderr.write("classification error rate: %f (%d observations)\n" % (errors/observations, observations))
+  currCorrect = findCorrect(w)
+  (wbest, maxCorrect) = (w, currCorrect) if currCorrect > maxCorrect else (wbest, maxCorrect)
 
-print "\n".join([str(weight) for weight in w])
+
+
+print "\n".join([str(weight) for weight in wbest])
