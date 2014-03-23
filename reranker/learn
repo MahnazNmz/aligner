@@ -6,6 +6,7 @@ import random
 import sys
 import bleu
 from collections import namedtuple
+import mlpy
 
 # Simplified implementation of Pairwise Ranking Optimization (PRO) due to
 # Hopkins & May (2011): http://aclweb.org/anthology-new/D/D11/D11-1125.pdf
@@ -42,11 +43,29 @@ for n, line in enumerate(open(opts.nbest)):
     sys.stderr.write(".")
 sys.stderr.write("\n")
 
-w = [0.0 for _ in xrange(len(nbests[0][0].features))]
-random.seed(opts.seed)
+'''w = [0.0 for _ in xrange(len(nbests[0][0].features))]
+random.seed(opts.seed)'''
 
 # PRO perceptron. Mostly follows the notation of Hopkins & May.
-for i in xrange(opts.epochs):
+x = []
+y = []
+for nbest in nbests:
+  def V():
+    for _ in xrange(opts.tau):
+      c1 = random.choice(nbest)
+      c2 = random.choice(nbest)
+      if c1 != c2 and math.fabs(c1.smoothed_bleu - c2.smoothed_bleu) > opts.alpha:
+        x.append([c1j-c2j for c1j,c2j in zip(c1.features, c2.features)])
+        if c1.smoothed_bleu > c2.smoothed_bleu:
+          y.append(1)
+        else:
+          y.append(-1)
+  V()
+en = mlpy.ElasticNetC(lmb=0.01, eps=0.001)
+en.learn(x,y)
+w = en.w()
+
+'''for i in xrange(opts.epochs):
   sys.stderr.write("Epoch %d..." % i)
   (observations, errors) = (0, 0.0)
   for nbest in nbests:
@@ -64,6 +83,6 @@ for i in xrange(opts.epochs):
       observations += 1
       if observations % 2000 == 0:
         sys.stderr.write(".")
-  sys.stderr.write("classification error rate: %f (%d observations)\n" % (errors/observations, observations))
+  sys.stderr.write("classification error rate: %f (%d observations)\n" % (errors/observations, observations))'''
 
 print "\n".join([str(weight) for weight in w])
