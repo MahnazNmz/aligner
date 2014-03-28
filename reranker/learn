@@ -18,7 +18,7 @@ import mlpy
 translation_candidate = namedtuple("candidate", "features, smoothed_bleu")
 optparser = optparse.OptionParser()
 optparser.add_option("-r", "--reference", dest="reference", default="data/train.en", help="English reference sentences")
-optparser.add_option("-n", "--nbest", dest="nbest", default="data/train.nbest", help="N-best lists")
+optparser.add_option("-n", "--nbest", dest="nbest", default="data/train.nbest.shuffled", help="N-best lists")
 optparser.add_option("-m", "--num-training-sentences", dest="m", default=sys.maxint, type="int", help="Number of training sentences (default=all)")
 optparser.add_option("-t", "--tau", dest="tau", default=5000, type="int", help="PRO samples per input sentence (tau, default=5000)")
 optparser.add_option("-x", "--xi", dest="xi", default=50, type="int", help="PRO training instances per input sentence (xi, default=50)")
@@ -44,10 +44,7 @@ for n, line in enumerate(open(opts.nbest)):
 sys.stderr.write("\n")
 
 
-'''w = [0.0 for _ in xrange(len(nbests[0][0].features))]
-random.seed(opts.seed)'''
-
-# PRO perceptron. Mostly follows the notation of Hopkins & May.
+# PRO using ElasticNet
 x = []
 y = []
 for nbest in nbests:
@@ -62,7 +59,7 @@ for nbest in nbests:
         else:
           y.append(-1)
   V()
-en = mlpy.ElasticNetC(lmb=0.01, eps=0.001)
+en = mlpy.ElasticNetC(lmb=0.01, eps=0.0001)
 en.learn(x,y)
 w = en.w()
 
