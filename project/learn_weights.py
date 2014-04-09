@@ -2,9 +2,9 @@ import optparse
 import mlpy
 
 optparser = optparse.OptionParser()
-optparser.add_option("-f", "--file", dest="fileName", default="data/wiki_data/pairs_withFeatures.txt", help="Each pair of sentences with pair features")
-optparser.add_option("-ep", "--english_pairs", dest="english_pairs", default="data/wiki_data/pairs.enu.dev", help="english pairs")
-optparser.add_option("-fp", "--foreign_pairs", dest="foreign_pairs", default="data/wiki_data/pairs.esn.dev", help="foreign pairs")
+optparser.add_option("-f", "--file", dest="fileName", default="pairs_withFeatures.txt", help="Each pair of sentences with pair features")
+optparser.add_option("-ep", "--english_pairs", dest="english_pairs", default="data/pairs.enu.dev", help="english pairs")
+optparser.add_option("-fp", "--foreign_pairs", dest="foreign_pairs", default="data/pairs.esn.dev", help="foreign pairs")
 
 featData = []
 classifications = []
