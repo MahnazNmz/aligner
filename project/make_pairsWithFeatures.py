@@ -74,7 +74,8 @@ while e_line and f_line:
 			onegram_Score_f = float(totalProb_onegram) / (len(f_words))
 			onegram_Score_e = float(totalProb_onegram) / (len(e_words))
 
-			twogram_Score = 0
+			twogram_Score_e = 0
+			twogram_Score_f = 0
 			if len(f_words) >= 2:
 				#make set of two grams in english sentence
 				#get two gram probability score
@@ -89,9 +90,10 @@ while e_line and f_line:
 						matches = (set(two_grams_f_e[two_gram.lower()].keys()) & set(e_words))
 						if(len(matches) > 0):
 							totalProb_twogram += max([two_grams_f_e[two_gram.lower()][e] for e in matches])
-				twogram_Score = float(totalProb_twogram) / max((len(f_words)), len(e_words))
+				twogram_Score_f = float(totalProb_twogram) / len(f_words)
+				twogram_Score_e = float(totalProb_twogram) / len(e_words)
 			result.write(e_sent + " ||| " + f_sent)
-			result.write(" ||| " + str(length_diff) + " " + str(onegram_Score_e) + " " + str(twogram_Score) + "\n")
+			result.write(" ||| " + str(length_diff) + " " + str(onegram_Score_e) + " " + str(onegram_Score_f) + " " + str(twogram_Score_e) + " "  + str(twogram_Score_f) + "\n")
 
 		f_line = f_sentences.readline()
 	f_line = f_sentences.readline()
