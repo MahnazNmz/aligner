@@ -5,9 +5,10 @@ optparser.add_option("-e", "--english_pairs", dest="english_pairs", default="dat
 optparser.add_option("-f", "--foreign_pairs", dest="foreign_pairs", default="data/orig.esn.dev", help="foreign pairs")
 optparser.add_option("-o", "--one_grams", dest="one_grams", default="data/pruned_1_grams", help="one gram tanslation table")
 optparser.add_option("-t", "--two_grams", dest="two_grams", default="data/pruned_2_grams", help="two gram translation table")
+optparser.add_option("-r", "--result", dest="result_name", default="pairs_withFeatures.dev", help="name of file to write to")
 (opts, args) = optparser.parse_args()
 
-result = open("pairs_withFeatures.txt", "w")
+result = open(opts.result_name, "w")
 
 onegram_file = open(opts.one_grams, "r")
 
@@ -61,16 +62,17 @@ while e_line and f_line:
 			totalProb_onegram = 0
 			for f_w in f_words:
 				#same word occurs in both sentences (i.e. names, places, cognates)
-				if f_w in e_words:
+				if f_w.lower() in e_words:
 					totalProb_onegram += 1
 					continue
-				if f_w in one_grams_f_e:
+				if f_w.lower() in one_grams_f_e:
 					#find english translations of f_w that are present in the english sentences
-					matches = (set(one_grams_f_e[f_w].keys()) & set(e_words))
+					matches = (set(one_grams_f_e[f_w.lower()].keys()) & set(e_words))
 					if len(matches) > 0:
 						#add the probability from the best match
-						totalProb_onegram += max([one_grams_f_e[f_w][e] for e in matches])
-			onegram_Score = float(totalProb_onegram) / len(f_words)
+						totalProb_onegram += max([one_grams_f_e[f_w.lower()][e] for e in matches])
+			onegram_Score_f = float(totalProb_onegram) / (len(f_words))
+			onegram_Score_e = float(totalProb_onegram) / (len(e_words))
 
 			twogram_Score = 0
 			if len(f_words) >= 2:
@@ -80,13 +82,16 @@ while e_line and f_line:
 				for index_start in range(0, len(f_words) - 1):
 					index_end = index_start + 2
 					two_gram = " ".join(f_words[index_start:index_end])
-					if two_gram in two_grams_f_e:
-						matches = (set(two_grams_f_e[two_gram].keys()) & set(e_words))
+					if two_gram in e_sent:
+						totalProb_twogram += 1
+						continue
+					if two_gram.lower() in two_grams_f_e:
+						matches = (set(two_grams_f_e[two_gram.lower()].keys()) & set(e_words))
 						if(len(matches) > 0):
-							totalProb_twogram += max([two_grams_f_e[two_gram][e] for e in matches])
-				twogram_Score = float(totalProb_twogram) / (len(f_words) - 1)
+							totalProb_twogram += max([two_grams_f_e[two_gram.lower()][e] for e in matches])
+				twogram_Score = float(totalProb_twogram) / max((len(f_words)), len(e_words))
 			result.write(e_sent + " ||| " + f_sent)
-			result.write(" ||| " + str(length_diff) + " " + str(onegram_Score) + " " + str(twogram_Score) + "\n")
+			result.write(" ||| " + str(length_diff) + " " + str(onegram_Score_e) + " " + str(twogram_Score) + "\n")
 
 		f_line = f_sentences.readline()
 	f_line = f_sentences.readline()
