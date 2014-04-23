@@ -55,12 +55,31 @@ for article in titles:
 	tokenized_sentences = []
 	for sentence in sentences:
 		tokens = TreebankWordTokenizer().tokenize(sentence) 
+		firstpass_tokens = []
 		new_tokens = []
-		seenEdit = False
 		seenLi = False
 		seenCapt = False
 		isCloseParen = False
+		#first pass - make everything between [] into one token
+		openCount = 0
+		bracketToken = []
 		for token in tokens:
+			token = token.strip()
+			if openCount == 0 and token != "[":
+				firstpass_tokens.append(token)
+			else:
+				if token == "[":
+					openCount += 1
+					bracketToken.append(token)
+				elif openCount > 0:
+					bracketToken.append(token)
+				if token == "]":
+					openCount -= 1
+					if openCount == 0:
+						firstpass_tokens.append("".join(bracketToken))
+						bracketToken = []
+
+		for token in firstpass_tokens:
 			#doesn't work for nested quotes
 			if token == "\"" and not isCloseParen:
 				token = "``"
@@ -74,11 +93,8 @@ for article in titles:
 			if ")" in token:
 				index = token.index(")")
 				token = token[:index] + " -RRB- " + token[index + 1:]
-			if (opts.language == "en" and token == "edit") or (opts.language == "es" and token == "editar"):
-				seenEdit = True
-			if token == "]" and seenEdit:
-				token = "] \n"
-				seenEdit = False
+			if (opts.language == "en" and token == "[edit]") or (opts.language == "es" and token == "[editar]"):
+				token = token + " \n"
 			if token == "li":
 				seenLi = True
 				token = ""
@@ -89,9 +105,9 @@ for article in titles:
 				seenLi = False
 				seenCapt = False
 				token = ""
-			if "[" in token and token != "[":
+			'''if "[" in token and token != "[":
 				ind = token.index("[")
-				token = token[:ind] + " " + token[ind:]
+				token = token[:ind] + " " + token[ind:]'''
 			new_tokens.append(token)
 		new_sent = ' '.join(new_tokens).strip()
 		if new_sent != "":
