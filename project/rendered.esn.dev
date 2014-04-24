@@ -161,7 +161,8 @@ Clasificación [editar]
  Sección Aesculus Yemas resinosas , foliolos sésiles y frutos espinosos  -LRB-  A. hippocastanum  -RRB-  o lisos y turbinados  -LRB-  A. turbinata  -RRB-  .
 Aesculus hippocastanum L. , Castaño de indias
 Aesculus turbinata Blume , Falso castaño del Japón
-Sección Calothyrsus Yemas resinosas , foliolos peciolulados y frutos no erizados y piriformes .
+Sección Calothyrsus 
+Yemas resinosas , foliolos peciolulados y frutos no erizados y piriformes .
 Aesculus assamica Griff .
 Aesculus californica  -LRB-  Spach  -RRB-  Nutt. , Falso castaño de California
 Aesculus chinensis Bunge
@@ -173,8 +174,11 @@ Aesculus flava Sol. , Falso castaño amarillo
 Aesculus glabra Willd. , Falso castaño de Ohio
 Aesculus pavia L. , Falso castaño rojo o de Virginia
 Aesculus sylvatica W. Bartram
-Sección Macrothyrsus Una sola especie de yemas no resinosas , folíolos peciolulados y frutos lisos y piriformes Aesculus parviflora Walter , Castaño de indias enano
-Sección Parryanae Una sola especie de yemas no resinosas , folíolos sésiles y frutos tomentosos y verrugosos .
+Sección Macrothyrsus 
+Una sola especie de yemas no resinosas , folíolos peciolulados y frutos lisos y piriformes 
+Aesculus parviflora Walter , Castaño de indias enano
+Sección Parryanae 
+Una sola especie de yemas no resinosas , folíolos sésiles y frutos tomentosos y verrugosos .
 Aesculus parryi Gray , Trompo
 Usos [editar] 
  Los frutos tienen altas concentraciones de una [Saponina] saponina tóxica : aesculina , muy tóxica para muchos animales , en el humano causa [Hem%C3%B3lisis] hemólisis  -LRB-  destrucción de [Gl%C3%B3bulo_rojo] glóbulo rojos  -RRB-  .
@@ -184,11 +188,9 @@ Las castañas de indias de ciertas especies de Aesculus machacadas y maceradas e
 La madera de estos árboles , por lo común , ha sido poco apreciada al ser blanda , ligera y de corta vida , siendo principalmente empleada en usos menores como la fabricación de embalajes , cajas y como combustible .
 Galería de Imágenes [editar]
 Referencias y enlaces externos [editar] 
- [Wikimedia_Commons] Wikimedia Commons alberga contenido multimedia sobre AesculusCommons .
 Germplasm Resources Information Network : Aesculus
-Forest , F. , Drouin , J. N. , Charest , R. , Brouillet , L. , & amp ; amp ; amp ; Bruneau A .
--LRB-  2001  -RRB-  .
-A morphological phylogenetic analysis of Aesculus L. and Billia Peyr .
+Forest , F. , Drouin , J. N. , Charest , R. , Brouillet , L. , & amp ; amp ; amp ; Bruneau A . -LRB-  2001  -RRB-  .
+A morphological phylogenetic analysis of Aesculus L. and Billia Peyr . 
 -LRB-  Sapindaceae  -RRB-  .
 Canad .
 J. Botany 79  -LRB-  2  -RRB-  : 154-169 .
@@ -202,7 +204,8 @@ En [Matem%C3%A1ticas] matemáticas , especialmente en [Teor%C3%ADa_del_orden] te
 Ésta formaliza el concepto intuitivo de orden , secuencia , o arreglo de los elementos del conjunto .
 Un tal orden no necesariamente debe ser [Orden_total] total , es decir , no se necesita que se puedan comparar unos con otros todos los elementos del conjunto ; esto sin embargo puede ocurrir en algunos casos  -LRB-  en otras palabras , el [Orden_total] orden total es un caso particular del orden parcial  -RRB-  .
 Definición formal [editar] 
- Un orden parcial es una [Relaci%C3%B3n_binaria] relación binaria R sobre un conjunto X que es [Relaci%C3%B3n_reflexiva] reflexiva , [Relaci%C3%B3n_antisim%C3%A9trica] antisimétrica , y [Relaci%C3%B3n_transitiva] transitiva , es decir , para cualesquiera a , b , y c en X se tiene que : aRa  -LRB-  reflexividad  -RRB-  .
+ Un orden parcial es una [Relaci%C3%B3n_binaria] relación binaria R sobre un conjunto X que es [Relaci%C3%B3n_reflexiva] reflexiva , [Relaci%C3%B3n_antisim%C3%A9trica] antisimétrica , y [Relaci%C3%B3n_transitiva] transitiva , es decir , para cualesquiera a , b , y c en X se tiene que :
+ aRa  -LRB-  reflexividad  -RRB-  .
 Si aRb y bRa , entonces a = b  -LRB-  antisimetría  -RRB-  .
 Si aRb y bRc , entonces aRc  -LRB-  transitividad  -RRB-  .
 Un conjunto con un orden parcial se denomina conjunto parcialmente ordenado o poset .
@@ -211,26 +214,26 @@ En particular , a un [Orden_total] conjunto totalmente ordenado también se lo l
 Usualmente se usa la notación de `` ≤ '' en lugar de `` R '' para el orden parcial .
 Ejemplos [editar] 
  [Archivo:Hasse_diagram_of_powerset_of_3.svg] Conjunto de los subconjuntos de { x , y , z } , ordenado por inclusión .
-Algunos de los ejemplos más conocidos son los siguientes : El conjunto de los [N%C3%BAmero_natural] naturales con su orden usual  -LRB-  la relación `` [Inecuaci%C3%B3n] menor o igual ''  -RRB-  .
+Algunos de los ejemplos más conocidos son los siguientes : 
+El conjunto de los [N%C3%BAmero_natural] naturales con su orden usual  -LRB-  la relación `` [Inecuaci%C3%B3n] menor o igual ''  -RRB-  .
 Este orden es además un orden total .
 El conjunto de los [N%C3%BAmero_entero] enteros con su orden usual .
 Este orden es también total .
 Un subconjunto finito { 1 , 2 , ... , n } de los naturales .
 Este orden es también total .
 El conjunto de naturales ordenado por la relación de [Divisor] divisibilidad .
-El conjunto de [Subconjunto] subconjuntos de un conjunto dado  -LRB-  i.e .
-su [Conjunto_de_partes] conjunto de partes  -RRB-  ordenado por [Subconjunto] inclusión .
+El conjunto de [Subconjunto] subconjuntos de un conjunto dado  -LRB-  i.e . su [Conjunto_de_partes] conjunto de partes  -RRB-  ordenado por [Subconjunto] inclusión .
 El conjunto de [Subespacio] subespacios de un [Espacio_vectorial] espacio vectorial ordenado por inclusión .
 Órdenes parciales estrictos y no estrictos [editar] 
  En algunos contextos , el orden parcial anteriormente definido se denomina no estricto o reflexivo ; así pues , un orden parcial estricto o irreflexivo es una relación binaria que es [Relaci%C3%B3n_irreflexiva] irreflexiva y [Relaci%C3%B3n_transitiva] transitiva , y por lo tanto [Relaci%C3%B3n_asim%C3%A9trica] asimétrica .
 De forma equivalente , asimétrica  -LRB-  y por lo tanto irreflexiva  -RRB-  y transitiva .
-Es decir , para cualesquiera a , b , y c en X se tiene que : ¬  -LRB-  aRa  -RRB-   -LRB-  irreflexividad  -RRB-  .
+Es decir , para cualesquiera a , b , y c en X se tiene que : 
+¬  -LRB-  aRa  -RRB-   -LRB-  irreflexividad  -RRB-  .
 Si aRb , entonces ¬  -LRB-  bRa  -RRB-   -LRB-  asimetría  -RRB-  .
 Si aRb y bRc , entonces aRc  -LRB-  transitividad  -RRB-  .
 Si R es un orden parcial no estricto , entonces S = R − {  -LRB-  a , a  -RRB-  | a ∈ X } es el orden parcial estricto correspondiente .
-Análogamente , todo orden parcial estricto S tiene uno no estricto correspondiente , a saber , S ∪ {  -LRB-  a , a  -RRB-  | a ∈ P } , o la `` clausura reflexiva '' de R. Los órdenes parciales estrictos son útiles porque se corresponden más directamente con los [Grafo_ac%C3%ADclico_dirigido] grafos acíclicos dirigidos : todo orden parcial estricto es un G.A.D. , y la [Clausura_transitiva] clausura transitiva de un G.A.D .
-es , además de un orden parcial estricto , un G.A.D .
-en sí misma .
+Análogamente , todo orden parcial estricto S tiene uno no estricto correspondiente , a saber , S ∪ {  -LRB-  a , a  -RRB-  | a ∈ P } , o la `` clausura reflexiva '' de R. 
+Los órdenes parciales estrictos son útiles porque se corresponden más directamente con los [Grafo_ac%C3%ADclico_dirigido] grafos acíclicos dirigidos : todo orden parcial estricto es un G.A.D. , y la [Clausura_transitiva] clausura transitiva de un G.A.D . es , además de un orden parcial estricto , un G.A.D . en sí misma .
 Número de órdenes parciales [editar] 
  La secuencia A001035 de la [OEIS] OEIS da el número de órdenes parciales en un conjunto de n elementos .
 Extensión lineal [editar] 
@@ -252,7 +255,8 @@ Historia del florete [editar]
 En la actualidad , aunque se aconseja comenzar aprendiendo al menos algunos principios fundamentales de florete , los [Tirador] tiradores empiezan con cualquiera de las tres armas .
 El florete en la esgrima deportiva [editar] 
  El florete es una de las tres armas de la [Esgrima] esgrima , junto con la [Espad%C3%ADn] espada y el [Sable] sable .
-Tiene una longitud de 110 cm y un peso máximo de 500 g. Su hoja es de sección rectangular .
+Tiene una longitud de 110 cm y un peso máximo de 500 g.
+ Su hoja es de sección rectangular .
 La zona de tocado en florete está limitada .
 Esto es una herencia de los tiempos en los que los equipamientos de seguridad estaban limitados a esta zona : los tocados en la cabeza eran peligrosos , por lo que se eliminaron .
 Posteriormente la zona de tocado se redujo exclusivamente al tronco .
@@ -305,19 +309,15 @@ Repasa los posicionamientos históricos hasta él , sobre el tema mortal–inmor
 Como algo puede ser dicho en dos sentidos , propio e impropio , lo mortal y lo inmortal pueden ser dichos de estos dos modos .
 Además , el número puede ser único para la especie o para cada individuo .
 Básicamente , entonces , caben seis posibilidades o posiciones  -LRB-  el hombre 1- es en sólo en especie inmortal absolutamente , y mortal absolutamente ; 2- es en cada individuo inmortal absolutamente y mortal en sentido relativo ; 3- es en cada individuo inmortal en sentido relativo y mortal absolutamente ; 4- es absolutamente mortal y sólo es en algún aspecto inmortal ; 5- en cada individuo absolutamente mortal y absolutamente inmortal ; 6- único en especie absolutamente mortal y sólo inmortal en sentido impropio  -RRB-  , quedando las últimas dos de antemano rechazadas por absurdas .
-1 .
-Es la posición de [Averroes] Averroes y , según dice , de [Temistio] Temistio .
+1 . Es la posición de [Averroes] Averroes y , según dice , de [Temistio] Temistio .
 El primero planteaba que había una sola alma inmortal que es común a todos los seres humanos , y a la vez un alma individual , pero mortal .
 Rechaza esa idea de la unidad del entendimiento de todos los hombres , plantea que es uno y el mismo ser el que recibe las impresiones sensibles y los que la reflexiona , se defiende la idea de una conciencia individual , para él no es justificable que la separación entre dos funciones del alma , constituyen dos sustancias distintas , nuestra experiencia nos muestra que el intelecto no puede actuar separado del cuerpo , y no tenemos evidencia de que el intelecto sea separable del cuerpo o de que pueda vivir separado de él .
 El intelecto no puede conocer nada sin cuerpo , lo necesita para obtener percepciones .
-2 .
-Concepción atribuida a Platón según la cual la persona individual tiene un alma inmortal , y el cuerpo es mortal  -LRB-  Pomponazzi le atribuye un alma sensitiva  -RRB-  .
+2 . Concepción atribuida a Platón según la cual la persona individual tiene un alma inmortal , y el cuerpo es mortal  -LRB-  Pomponazzi le atribuye un alma sensitiva  -RRB-  .
 Rechaza tal posición .
-3 .
-Opinión de [Santo_Tom%C3%A1s_de_Aquino] Santo Tomás de Aquino , según la cual el alma solo tiene una naturaleza y es absolutamente inmortal , y sólo en algunos aspectos es mortal .
+3 . Opinión de [Santo_Tom%C3%A1s_de_Aquino] Santo Tomás de Aquino , según la cual el alma solo tiene una naturaleza y es absolutamente inmortal , y sólo en algunos aspectos es mortal .
 Pomponazzi afirma : “no tiene [TomásdeAquino] duda sobre la inmortalidad del alma porque lo mantiene las Sagradas Escrituras” , pero él sostiene que no es compatible con Aristóteles .
-4 .
-Posición identificada con Alejandro de Afrodisia : el alma es absolutamente mortal y sólo es en algún aspecto inmortal .
+4 . Posición identificada con Alejandro de Afrodisia : el alma es absolutamente mortal y sólo es en algún aspecto inmortal .
 Dada la posición intermedia del hombre , necesita del cuerpo para encontrar conocimiento , y no puedo actuar sin los sentimientos , por lo tanto debe considerarse como absolutamente mortal , pero a diferencia de los animales participan de los conceptos universales .
 Su posición [editar] 
  La numero 4 es la posición que defiende , por tanto para él la correcta interpretación de Aristóteles no puede haber una lucha entre sentidos y entendimiento , la cual es sólo la distinción de dos fases de un mismo proceso .
@@ -351,8 +351,7 @@ Véase también [editar]
 [Filosof%C3%ADa_Natural_en_la_Edad_Moderna] Filosofía Natural en la Edad Moderna
 
 Louis-Michel Aury
-Louis-Michel Aury  -LRB-  [Par%C3%ADs] París , [Francia] Francia , [1788] 1788 ?
-- [Agosto] agosto de [1821] 1821  -RRB-  , fue un marino de origen [Francia] francés que sirvió a varios movimientos independentistas americanos durante las [Guerras_de_Independencia_Hispanoamericana] Guerras de Independencia Hispanoamericana .
+Louis-Michel Aury  -LRB-  [Par%C3%ADs] París , [Francia] Francia , [1788] 1788 ? - [Agosto] agosto de [1821] 1821  -RRB-  , fue un marino de origen [Francia] francés que sirvió a varios movimientos independentistas americanos durante las [Guerras_de_Independencia_Hispanoamericana] Guerras de Independencia Hispanoamericana .
 Sirvió como corsario en el [Mar_Caribe] Mar Caribe a los gobiernos de [Venezuela] Venezuela , [Provincias_Unidas_de_Nueva_Granada] Nueva Granada , [M%C3%A9xico] México y la [Gran_Colombia] Gran Colombia .
 Entre sus acciones más recordadas se encuentran la toma de [Florida] Florida junto a [Gregor_McGregor] Gregor McGregor , Lino de Clemente , [Agust%C3%ADn_Codazzi] Agustín Codazzi , [Pedro_Gual] Pedro Gual y otros patriotas venezolanos .
 Luego de tomar control de la peninsula declararon la independencia de [La_Florida] La Florida y la proclamaron como república , pero fueron expulsados 66 días después por una expedición hispano-estadounidense .
@@ -495,10 +494,9 @@ Fallecimientos [editar]
 [8_de_diciembre] 8 de diciembre : [Jos%C3%A9_Vicente_Concha] José Vicente Concha , presidente colombiano .
 [28_de_diciembre] 28 de diciembre : [Jean-Baptiste_Lamarck] Jean-Baptiste Lamarck , botánico y zoólogo francés  -LRB-  n. [1744] 1744  -RRB-
 Enlaces externos [editar] 
- [Archivo:Commons-logo.svg] [Wikimedia_Commons] Wikimedia Commons alberga contenido multimedia sobre 1829 .
-Commons
 
 Chevrolet Celebrity
+
 El Chevrolet Celebrity llegó al mercado en el año [1982] 1982 para ocupar un lugar intermedio entre el pequeño Citation y el mediano Malibú Classic dentro de la gama de productos de la división [Chevrolet] Chevrolet y como estrategia para contrarrestar las ventas de vehículos de tamaño intermedio , de origen extranjero , como [Audi] Audi y [Volvo] Volvo en el mercado norteamericano , aunque en algunos mercados , como en el caso de [M%C3%A9xico] México , este sustituyó al Malibu debido a las restricciones gubernamentales impuestas a los vehículos con motores de 8 cilindros .
 Incluso se produjo una versión más deportiva , apta para ser vendida en [Europa] Europa llamada Eurosport , que incluía defensas y espejos pintados en el mismo color de la carrocería y caja de cambios manual de 5 velocidades Getrag , fabricada en [Alemania] Alemania .
 Este vehículo poseía tracción en las ruedas delanteras , un atractivo diseño y motores de baja cilindrada que favorecían el consumo de combustible .
@@ -514,8 +512,10 @@ Se podía escoger con una caja de cambios manual de 4 velocidades accionada desd
 Usaba dirección de cremallera , asistida hidráulicamente .
 El sistema de frenos servoasistido , usaba una bomba doble , discos en las ruedas delanteras y campanas en las traseras .
 El sistema eléctrico era alimentado por un alternador Delcotrón de 66 amperios para los autos de versión básica , y de 94 amperios para los de lujo .
-Usaba llantas de 14 pulgadas  -LRB-  185/70 R14”  -RRB-  Capacidad del tanque de gasolina : 16.4 galones Carrocería : Largo 4795 [Mm] mm , ancho 1720 mm , alto 1354 mm , distancia entre ejes 2664 mm , distancia entre llantas delanteras 1492 mm , distancia entre llantas traseras 1447 mm .
-este modelo llego a venderse con muy buenos resultados en mercados emergentes como [M%C3%A9xico] México y [Colombia] Colombia donde en este último a pesar de la invasion de autos coreanos , chinos y japoneses sigue vigente por su mecánica fiable y en algunos casos fácil de reparar Modelos y diferencias [editar] 
+Usaba llantas de 14 pulgadas  -LRB-  185/70 R14”  -RRB-  
+Capacidad del tanque de gasolina : 16.4 galones Carrocería : Largo 4795 [Mm] mm , ancho 1720 mm , alto 1354 mm , distancia entre ejes 2664 mm , distancia entre llantas delanteras 1492 mm , distancia entre llantas traseras 1447 mm .
+este modelo llego a venderse con muy buenos resultados en mercados emergentes como [M%C3%A9xico] México y [Colombia] Colombia donde en este último a pesar de la invasion de autos coreanos , chinos y japoneses sigue vigente por su mecánica fiable y en algunos casos fácil de reparar 
+Modelos y diferencias [editar] 
  CS : producido entre 1982 y 1983 .
 Se vendía en versión básica con caja mecánica de 4 velocidades , silla delantera con espaldar completo , alternador menos potente  -LRB-  66 amperios  -RRB-  , e instrumentación básica en la que primaban los testigos luminosos sobre los relojes .
 El radio [Delco] Delco  -LRB-  de norma en el particular  -RRB-  , con cuatro parlantes tenía los botones uno al lado del otro .
@@ -537,7 +537,8 @@ El frontal del auto , así como la bocelería tenían nuevo diseño , lo mismo q
 El aire acondicionado era de serie en las dos versiones .
 1986 - 1990 : El Celebrity recibe un restyling : La parrilla y el frente se modifican con un aspecto más moderno , ya que se sustituyen las unidades selladas por faros de halógeno , y las direccionales se ponen en la salpicadera , a la altura de éstos en lugar de abajo .
 Así también , los cuartos traseros adoptan una configuración más simple , y en la defensa delantera se montan luces direccionales adicionales  -LRB-  El Celebrity en la imagen corresponde a esta descripción  -RRB-  .
-Los detalles y el equipamiento interior permanecen casi iguales , pero hay un gran cambio en la motorización : 1.-  -LRB-  1986-1989  -RRB-  2.5L  -LRB-  151 in³  -RRB-  Iron Duke Tech 4 de 102 cv .
+Los detalles y el equipamiento interior permanecen casi iguales , pero hay un gran cambio en la motorización : 
+1.-  -LRB-  1986-1989  -RRB-  2.5L  -LRB-  151 in³  -RRB-  Iron Duke Tech 4 de 102 cv .
 2.-  -LRB-  1986-1989  -RRB-  2.8L  -LRB-  173 in³  -RRB-  Motor L44 60-Degree V6 de 135 cv .
 3.-  -LRB-  1990  -RRB-  3.1L  -LRB-  191 in³  -RRB-  Motor LHO 60-Degree V6 de 145 cv .
 El motor de 4 cilindros recibe 12 caballos más , y se cambia el V6 de carburador doble por un nuevo motor 2.8 V6 de Alta Potencia con inyección electrónica multipunto  -LRB-  MPFI  -RRB-  , muy apreciado por el mercado americano .
@@ -598,8 +599,6 @@ Tyer , un sobresaliente animador de los dibujos animados originales de Terrytoon
 El 2002 , los personajes de Terrytoons regresaron a la televisión como parte de un anuncio publicitario original de queso .
 Actualmente se produce un nuevo largometraje original de Terrytoons por Paramount y su canal de televisión por cable [Nickelodeon] Nickelodeon .
 Enlaces externos [editar] 
- Paul Terry en [Internet_Movie_Database] Internet Movie Database
-Terrytoons en [Internet_Movie_Database] Internet Movie Database
 
 Nadja Uhl
 Nadja Uhl es una [Actriz] actriz [Alemana] alemana .
@@ -622,53 +621,89 @@ En [2008] 2008 participa en El Complejo Baader Meinhof  -LRB-  [Der_Baader_Meinh
 En esta historia basada en hechos reales , Nadja Uhl interpreta a [Brigitte_Mohnhaupt] Brigitte Mohnhaupt , integrante activa de la [Fracci%C3%B3n_del_Ej%C3%A9rcito_Rojo] Fracción del Ejército Rojo  -LRB-  Rote Armee Fraktion o R.A.F. , un [Grupo_terrorista] grupo terrorista alemán de ideología [Marxista] marxista que estuvo activo entre finales de los 60 y [1998] 1998  -RRB-  y líder de su segunda generación .
 También en 2008 , Nadja Uhl participa en una producción , basada asimismo en hechos reales , sobre el secuestro , en [1977] 1977 , del Vuelo 181 de [Lufthansa] Lufthansa , perpetrado por cuatro miembros del [Frente_Popular_para_la_Liberaci%C3%B3n_de_Palestina] Frente Popular para la Liberación de Palestina y en connivencia con la R.A.F .
 El papel de Nadja Uhl se corresponde esta vez con la [Auxiliar_de_vuelo] auxiliar de vuelo Gabriele Dillmann , una de las víctimas del secuestro .
-Se da la coincidencia de que en el momento del secuestro la líder de la R.A.F .
-era Brigitte Mohnhaupt .
+Se da la coincidencia de que en el momento del secuestro la líder de la R.A.F . era Brigitte Mohnhaupt .
 Nadja Uhl dio a luz a una hija el [28_de_octubre] 28 de octubre de 2006 .
 Filmografía y personajes interpretados [editar] 
- Die Toten vom Schwarzwald  -LRB-  [2009] 2009  -RRB-   -LRB-  [TV] TV  -RRB-  ... . Inka
-Die Stunde der Nutria  -LRB-  2009  -RRB-   -LRB-  TV  -RRB-  ... . Tania Bartko
-Männerherzen  -LRB-  2009  -RRB-  ... . Susanne Feldberg
-So glücklich war ich noch nie  -LRB-  2009  -RRB-  ... . Tanja
-Mogadischu  -LRB-  2008  -RRB-   -LRB-  TV  -RRB-  ... . auxiliar de vuelo Gabriele Dillmann
-Der Baader Meinhof Komplex  -LRB-  2008  -RRB-  ... . Brigitte Mohnhaupt
-Kirschblüten - Hanami  -LRB-  2008  -RRB-  ... . Franzi
-Nicht alle waren Mörder  -LRB-  2006  -RRB-   -LRB-  TV  -RRB-  ... . Anna Degen
-Vier Minuten  -LRB-  2006  -RRB-  ... . Nadine Hoffmann
-Die Sturmflut  -LRB-  2006  -RRB-   -LRB-  TV  -RRB-  ... . Katja Döbbelin
-Dornröschen erwacht  -LRB-  2006  -RRB-   -LRB-  TV  -RRB-  ... . Juliane Meybach
+ Die Toten vom Schwarzwald  -LRB-  [2009] 2009  -RRB-   -LRB-  [TV] TV  -RRB-  ... . 
+ Inka
+Die Stunde der Nutria  -LRB-  2009  -RRB-   -LRB-  TV  -RRB-  ... . 
+Tania Bartko
+Männerherzen  -LRB-  2009  -RRB-  ... . 
+Susanne Feldberg
+So glücklich war ich noch nie  -LRB-  2009  -RRB-  ... . 
+Tanja
+Mogadischu  -LRB-  2008  -RRB-   -LRB-  TV  -RRB-  ... . 
+auxiliar de vuelo Gabriele Dillmann
+Der Baader Meinhof Komplex  -LRB-  2008  -RRB-  ... . 
+Brigitte Mohnhaupt
+Kirschblüten - Hanami  -LRB-  2008  -RRB-  ... . 
+Franzi
+Nicht alle waren Mörder  -LRB-  2006  -RRB-   -LRB-  TV  -RRB-  ... . 
+Anna Degen
+Vier Minuten  -LRB-  2006  -RRB-  ... . 
+Nadine Hoffmann
+Die Sturmflut  -LRB-  2006  -RRB-   -LRB-  TV  -RRB-  ... . 
+Katja Döbbelin
+Dornröschen erwacht  -LRB-  2006  -RRB-   -LRB-  TV  -RRB-  ... . 
+Juliane Meybach
 Artour  -LRB-  [Serie_de_TV] serie de TV  -RRB-  .
-Episodios : 1 [Episodio] episodio emitido el [5_de_enero] 5 de enero de 2006
-Sommer vorm Balkon  -LRB-  2005  -RRB-  ... . Nicole `` Nike '' Pawelsky
-Mord am Meer  -LRB-  2005  -RRB-   -LRB-  TV  -RRB-  ... . Paula Reinhardt
-Lautlos  -LRB-  [2004] 2004  -RRB-  ... . Nina
-Das Wunder von Lengede  -LRB-  [2003] 2003  -RRB-   -LRB-  TV  -RRB-  ... . Helga Wolbert
-De Tweeling  -LRB-  2002  -RRB-  ... . Anna
-Scherbentanz  -LRB-  2002  -RRB-  ... . Zitrone
+Episodios : 
+1 [Episodio] episodio emitido el [5_de_enero] 5 de enero de 2006
+Sommer vorm Balkon  -LRB-  2005  -RRB-  ... . 
+Nicole `` Nike '' Pawelsky
+Mord am Meer  -LRB-  2005  -RRB-   -LRB-  TV  -RRB-  ... . 
+Paula Reinhardt
+Lautlos  -LRB-  [2004] 2004  -RRB-  ... . 
+Nina
+Das Wunder von Lengede  -LRB-  [2003] 2003  -RRB-   -LRB-  TV  -RRB-  ... .
+Helga Wolbert
+De Tweeling  -LRB-  2002  -RRB-  ... . 
+Anna
+Scherbentanz  -LRB-  2002  -RRB-  ... . 
+Zitrone
 Was tun , wenn 's brennt ?
--LRB-  [2001] 2001  -RRB-  ... . Nele
-My Sweet Home  -LRB-  2001  -RRB-  ... . Anke
-La Volpe a tre zampe  -LRB-  2001  -RRB-  ... . Doris
-Verhängnisvolles Glück  -LRB-  [2000] 2000  -RRB-   -LRB-  TV  -RRB-  ... . Gloria
-Die Stille nach dem Schuß  -LRB-  2000  -RRB-  ... . Tatjana
+-LRB-  [2001] 2001  -RRB-  ... . 
+Nele
+My Sweet Home  -LRB-  2001  -RRB-  ... . 
+Anke
+La Volpe a tre zampe  -LRB-  2001  -RRB-  ... . 
+Doris
+Verhängnisvolles Glück  -LRB-  [2000] 2000  -RRB-   -LRB-  TV  -RRB-  ... . 
+Gloria
+Die Stille nach dem Schuß  -LRB-  2000  -RRB-  ... . 
+Tatjana
 Verrat  -LRB-  2000  -RRB-
-Schnee in der Neujahrsnacht  -LRB-  [1999] 1999  -RRB-  ... . Nora
-No Sex  -LRB-  [1999] 1999  -RRB-   -LRB-  TV  -RRB-  ... . Isabell Jacobi
+Schnee in der Neujahrsnacht  -LRB-  [1999] 1999  -RRB-  ... . 
+Nora
+No Sex  -LRB-  [1999] 1999  -RRB-   -LRB-  TV  -RRB-  ... . 
+Isabell Jacobi
 Ufos über Waterlow  -LRB-  1998  -RRB-   -LRB-  TV  -RRB-
-Stan Becker - Auf eigene Faust  -LRB-  1998  -RRB-   -LRB-  TV  -RRB-  ... . Laura Basenius
-Gefährliche Lust - Ein Mann in Versuchung  -LRB-  1998  -RRB-   -LRB-  TV  -RRB-  ... . Sophie
-Blutiger Ernst  -LRB-  1998  -RRB-   -LRB-  TV  -RRB-  ... . Marysa Heeren
-Mörderisches Erbe - Tausch mit einer Toten  -LRB-  1998  -RRB-   -LRB-  TV  -RRB-  ... . Helen Braddy
+Stan Becker - Auf eigene Faust  -LRB-  1998  -RRB-   -LRB-  TV  -RRB-  ... . 
+Laura Basenius
+Gefährliche Lust - Ein Mann in Versuchung  -LRB-  1998  -RRB-   -LRB-  TV  -RRB-  ... . 
+Sophie
+Blutiger Ernst  -LRB-  1998  -RRB-   -LRB-  TV  -RRB-  ... . 
+Marysa Heeren
+Mörderisches Erbe - Tausch mit einer Toten  -LRB-  1998  -RRB-   -LRB-  TV  -RRB-  ... . 
+Helen Braddy
 Beichtstuhl der Begierde  -LRB-  [1997] 1997  -RRB-   -LRB-  TV  -RRB-
-Mein ist die Rache  -LRB-  1997  -RRB-   -LRB-  TV  -RRB-  ... . Evi
+Mein ist die Rache  -LRB-  1997  -RRB-   -LRB-  TV  -RRB-  ... . 
+Evi
 Tatort  -LRB-  serie de TV  -RRB-  .
-Episodios : Eiskalt  -LRB-  [Temporada] temporada 1 , episodio 370 , [28_de_septiembre] 28 de septiembre de 1997  -RRB-  ... . Petra Schächter
-First Love - Die große Liebe  -LRB-  serie de TV emitida por primera vez en 1997  -RRB-  ... . Wolke
+Episodios : 
+Eiskalt  -LRB-  [Temporada] temporada 1 , episodio 370 , [28_de_septiembre] 28 de septiembre de 1997  -RRB-  ... . 
+Petra Schächter
+First Love - Die große Liebe  -LRB-  serie de TV emitida por primera vez en 1997  -RRB-  ... . 
+Wolke
 Alarmcode 112  -LRB-  serie de TV emitida por primera vez el [25_de_septiembre] 25 de septiembre de [1996] 1996  -RRB-
 Polizeiruf 110  -LRB-  serie de TV  -RRB-  .
-Episodios : Kleine Dealer , große Träume  -LRB-  temporada 25 , episodio 4 , [19_de_febrero] 19 de febrero de 1996  -RRB-  ... . Bibi
-Zerrissene Herzen  -LRB-  1996  -RRB-   -LRB-  TV  -RRB-  ... . Britta
-Der Grüne Heinrich  -LRB-  1993  -RRB-  ... . Agnes
+Episodios : 
+Kleine Dealer , große Träume  -LRB-  temporada 25 , episodio 4 , [19_de_febrero] 19 de febrero de 1996  -RRB-  ... . 
+Bibi
+Zerrissene Herzen  -LRB-  1996  -RRB-   -LRB-  TV  -RRB-  ... . 
+Britta
+Der Grüne Heinrich  -LRB-  1993  -RRB-  ... . 
+Agnes
 Enlaces externos [editar] 
  http : //www.imdb.com/name/nm0880167/
 En alemán e inglés
@@ -745,23 +780,12 @@ Se discutió vivamente en Ginebra sobre el tipo de castigo para los disidentes e
 Calvino publicó de inmediato Defensa de la legítima fe y de la Trinidad contra los espantosos errores de Servet .
 Sin embargo , [Sebasti%C3%A1n_Castellion] Sebastián Castellion  -LRB-  originariamente Châtellon  -RRB-  , otro reformador francés radicado en Ginebra , escritor y teólogo , escribió en 1554 De herectis an sint persequendi  -LRB-  Si es lícito perseguir a los heréticos  -RRB-  , todo un manifiesto en favor de la tolerancia y una refutación de la tesis según la cual los herejes deben ser ejecutados , a la vez que una denuncia de la intolerancia de Calvino para con Servet : `` Matar a un hombre no es nunca defender una doctrina , sino matar a un hombre '' .
 El español [Casiodoro_Reina] Casiodoro Reina , por cierto traductor de la Biblia al castellano , tradujo también el texto de Castellion , ganándose con ello la animadversión de los calvinistas .
-El calvinismo [editar] 
- El culto se empobreció al extremo , reduciéndose a la oración y al recitado de salmos .
-Por oposición a la rica liturgia católica , se simplificó la celebración religiosa , suprimiéndose la música y las vidrieras con imágenes bíblicas o de santos .
-Se apagó el sonido de las campanas ; se retiraron los instrumentos musicales , así como el arte religioso y todo ornato , llegándose prácticamente a `` raspar '' las ricas fachadas medievales y renacentistas de templos y catedrales ; en templos extremadamente austeros incluso se eliminaron los altares .
-La lucha por imponer todas estas innovaciones se prolongó hasta con persecuciones , destierros y ejecuciones .
-Muerto [Lutero] Lutero , el propio Calvino se esforzó hasta el final de su vida por extender su influencia religiosa , especialmente hacia [Francia] Francia .
-Tras la muerte de [Zuinglio] Zuinglio en 1531 , Calvino se erigiría en supremo dirigente del [Protestantismo] protestantismo europeo , capaz de hacer frente a la [Contrarreforma_cat%C3%B3lica] Contrarreforma católica-romana .
-El [Calvinismo] calvinismo superó pronto en influencia al [Luteranismo] luteranismo  -LRB-  limitado al norte de [Alemania] Alemania y los países escandinavos  -RRB-  : calvinista fue el protestantismo dominante en [Suiza] Suiza y en [Pa%C3%ADses_Bajos] Holanda , así como el de los [Hugonote] hugonotes franceses , los [Presbiteriano] presbiterianos escoceses o los [Puritano] puritanos ingleses  -LRB-  que después emigraron a [Norteam%C3%A9rica] Norteamérica  -RRB-  , y otras comunidades importantes de tendencia calvinista surgieron en países como [Hungr%C3%ADa] Hungría , [Polonia] Polonia y [Alemania] Alemania .
-Calvino se opuso siempre a la fusión de sus iglesias con las de inspiración luterana , alegando irreductibles diferencias teológicas , singularmente la de la [Predestinaci%C3%B3n] predestinación : según Calvino , citando a San Pablo  -LRB-  cf .
-Efesios 1:11 ; Romanos 8:29-30 , etc .
--RRB-  , Dios conoce de antemano y llama a quiénes se salvarán , por la predicación del [Evangelio] Evangelio ; pues mediante la gracia irresistible , éstos son atraídos a él , y las buenas obras no constituyen ningún mérito ante Dios para salvarse , sino no más una eflorescencia lógica de la fe ; o sea , una conducta también prevista por el Creador .
-Otras peculiaridades de la doctrina calvinista , como la de admitir el préstamo con interés  -LRB-  en contraste con los romanistas y con los [Luterano] luteranos  -RRB-  , han permitido que desde [Max_Weber] Max Weber algunos historiadores y sociólogos vieran en la ética [Calvinismo] calvinista el «caldo de cultivo» más propicio para el desarrollo de la moderna economía [Capitalismo] capitalista .
 El testamento de Calvino [editar] 
  Ante la proximidad de su muerte , Calvino redactó su testamento , diciendo : «Doy testimonio de que vivo y me propongo morir en esta fe que Dios me ha dado por medio de Su Evangelio , y que no dependo de nada más para la salvación que la libre elección que Él ha hecho de mí .
 De todo corazón abrazo Su misericordia , por medio de la cual todos mis pecados quedan cubiertos , por causa de Cristo , y por causa de Su muerte y padecimientos .
 Según la medida de la gracia que me ha sido dada , he enseñado esta Palabra pura y sencilla , mediante sermones , acciones y exposiciones de esta Escritura .
-En todas mis batallas con los enemigos de la verdad no he empleado sofismas , sino que he luchado la buena batalla de manera frontal y directa.» Calvino mantuvo su salario de cien coronas y rehusó aceptar más .
+En todas mis batallas con los enemigos de la verdad no he empleado sofismas , sino que he luchado la buena batalla de manera frontal y directa.»
+ Calvino mantuvo su salario de cien coronas y rehusó aceptar más .
 Después de vivir 55 años , sólo dejó 300 coronas a sus herederos , incluyendo el valor de su biblioteca , que se vendió a gran precio .
 Cuando Calvino abandonó Estrasburgo para volverse a Ginebra , quisieron darle los privilegios de ciudadano libre de su ciudad y el salario de un prebendado , que le había sido asignado .
 Aceptó lo primero , pero rehusó rotundamente lo segundo .
@@ -770,9 +794,6 @@ Desde luego , se cuidó de la honra de la familia de su hermano , consiguiéndol
 Pero incluso sus enemigos cuentan que le hizo aprender el oficio de encuadernador de libros , en lo que trabajó luego toda su vida .
 Dispuso que su lugar en Ginebra fuera ocupado por [Teodoro_de_Beza] Teodoro de Beza , su más fiel seguidor y quien se destacó contra [Sebasti%C3%A1n_Castellion] Castellion .
 Referencias [editar] 
- ↑ Hans J. Hillerbrand , editor , The Reformation , A Narrative History Related by Contemporary Observers and Participants .
-Baker Book House , Ann Arbor , MI , 1985. pp .
-174  -LRB-  quoting Beza’s Life of Calvin  -RRB-  , 169 , 274 , 203.
 Bibliografía [editar] 
  [Instituci%C3%B3n_de_la_Religi%C3%B3n_Cristiana] Institución de la Religión Cristiana , originalmente publicada en [Lat%C3%ADn] latín en [1536] 1536 , traducida por Calvino al francés en [1541] 1541 y por Cipriano de Valera al español en [1597] 1597.
 Calvino la fuerza y la fragilidad autor Bernard Cottret
@@ -786,7 +807,6 @@ Sermones sobre la obra salvadora de Cristo
 Breve instrucción
 El libro de oro de la verdadera vida cristiana
 Enlaces externos [editar] 
- [Wikimedia_Commons] Wikimedia Commons alberga contenido multimedia sobre Juan CalvinoCommons .
 Biblioteca desde la cual se puede descargar la obra Institución de la religión cristiana de Juan Calvino .
 Instituto de Estudios Sijenenses `` Miguel Servet '' / Michael Servetus Institute .
 Centro de referencia para los estudios servetianos .
