@@ -1,4 +1,5 @@
 import optparse
+from collections import defaultdict
 
 optparser = optparse.OptionParser()
 optparser.add_option("-e", "--english_pairs", dest="english_pairs", default="data/orig.enu.dev", help="english pairs")
@@ -50,13 +51,13 @@ f_link = f_links.readline().split(" ")
 while e_line and f_line:
 	
 	english = []
-	englishLinks = defaultDict([])
+	englishLinks = defaultdict(list)
 
 	while len(e_line.strip()) != 0:
 		english.append(e_line.strip())
-		englishLinks[e_line.strip()] = e_link.split(" ")
+		englishLinks[e_line.strip()] = e_link
 		e_line = e_sentences.readline()
-		e_link = e_links.readline()
+		e_link = e_links.readline().split(" ")
 	e_line = e_sentences.readline()
 	e_link = e_links.readline()
 
@@ -65,6 +66,7 @@ while e_line and f_line:
 			f_sent = f_line.strip()
 			e_words = [e.lower() for e in e_sent.split(" ")]
 			f_words = [f.lower() for f in f_sent.split(" ")]
+			e_link = englishLinks[e_sent]
 			#find difference in sentence length
 			length_diff = abs(len(e_words) - len(f_words))
 			#find num of spanish translation found in english
@@ -103,10 +105,10 @@ while e_line and f_line:
 				twogram_Score_e = float(totalProb_twogram) / len(e_words)
 
 			#use link features
-			
-			
+			links_in_common = len(set(f_link) & set(e_link))
+
 			result.write(e_sent + " ||| " + f_sent)
-			result.write(" ||| " + str(length_diff) + " " + str(onegram_Score_e) + " " + str(onegram_Score_f) + " " + str(twogram_Score_e) + " "  + str(twogram_Score_f) + "\n")
+			result.write(" ||| " + str(length_diff) + " " + str(onegram_Score_e) + " " + str(onegram_Score_f) + " " + str(twogram_Score_e) + " "  + str(twogram_Score_f) + " " +str(links_in_common) + "\n")
 
 		f_line = f_sentences.readline()
 		f_link = f_links.readline().split(" ")
