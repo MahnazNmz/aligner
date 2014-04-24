@@ -37,12 +37,14 @@ for line in twogram_file:
 
 e_sentences = open(opts.english_pairs, "r")
 f_sentences = open(opts.foreign_pairs, "r")
-e_sent_with_links = open("rendered.enu.dev", "r")
+e_links = open("links.enu.dev", "r")
+f_links = open("links.esn.dev", "r")
 
 #pair up article sentences and add length_diff feature
 e_line = e_sentences.readline()
 f_line = f_sentences.readline()
-e_links = e_sent_with_links.readline()
+e_link = e_links.readline().split(" ")
+f_link = f_links.readline().split(" ")
 
 
 while e_line and f_line:
@@ -52,8 +54,11 @@ while e_line and f_line:
 
 	while len(e_line.strip()) != 0:
 		english.append(e_line.strip())
+		englishLinks[e_line.strip()] = e_link.split(" ")
 		e_line = e_sentences.readline()
+		e_link = e_links.readline()
 	e_line = e_sentences.readline()
+	e_link = e_links.readline()
 
 	while len(f_line.strip()) != 0:
 		for e_sent in english:
@@ -96,11 +101,17 @@ while e_line and f_line:
 							totalProb_twogram += max([two_grams_f_e[two_gram.lower()][e] for e in matches])
 				twogram_Score_f = float(totalProb_twogram) / len(f_words)
 				twogram_Score_e = float(totalProb_twogram) / len(e_words)
+
+			#use link features
+			
+			
 			result.write(e_sent + " ||| " + f_sent)
 			result.write(" ||| " + str(length_diff) + " " + str(onegram_Score_e) + " " + str(onegram_Score_f) + " " + str(twogram_Score_e) + " "  + str(twogram_Score_f) + "\n")
 
 		f_line = f_sentences.readline()
+		f_link = f_links.readline().split(" ")
 	f_line = f_sentences.readline()
+	f_link = f_links.readline()
 
 result.close()
 
