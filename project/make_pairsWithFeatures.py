@@ -37,14 +37,18 @@ for line in twogram_file:
 
 e_sentences = open(opts.english_pairs, "r")
 f_sentences = open(opts.foreign_pairs, "r")
+e_sent_with_links = open("rendered.enu.dev", "r")
 
 #pair up article sentences and add length_diff feature
 e_line = e_sentences.readline()
 f_line = f_sentences.readline()
+e_links = e_sent_with_links.readline()
+
 
 while e_line and f_line:
 	
 	english = []
+	englishLinks = defaultDict([])
 
 	while len(e_line.strip()) != 0:
 		english.append(e_line.strip())
