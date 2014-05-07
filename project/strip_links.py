@@ -9,9 +9,9 @@ optparser.add_option("-l", "--language", dest="language", default="en", help="la
 
 filename = ""
 if opts.language == "en":
-	filename = "rendered.enu.dev"
+	filename = "rendered.enu.test"
 elif opts.language == "es":
-	filename = "rendered.esn.dev"
+	filename = "rendered.esn.test"
 
 f = open(filename, "r")
 

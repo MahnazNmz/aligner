@@ -9,12 +9,13 @@ import optparse
 
 optparser = optparse.OptionParser()
 optparser.add_option("-l", "--language", dest="language", default="en", help="language of articles to look for")
+optparser.add_option("-p", "--prefix", dest="prefix", default="data or test folder")
 (opts, args) = optparser.parse_args()
 
 if opts.language == "en":
-	titles = open("data/titles_enu.dev")
+	titles = open(opts.prefix + "/titles_enu")
 elif opts.language == "es":
-	titles = open("data/titles_esn.dev")
+	titles = open(opts.prefix + "/titles_esn")
 
 def getContents(html):
 	soup = BeautifulSoup(html)

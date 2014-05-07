@@ -4,6 +4,7 @@ from collections import defaultdict
 optparser = optparse.OptionParser()
 optparser.add_option("-e", "--english_pairs", dest="english_pairs", default="data/orig.enu.dev", help="english pairs")
 optparser.add_option("-f", "--foreign_pairs", dest="foreign_pairs", default="data/orig.esn.dev", help="foreign pairs")
+optparser.add_option("-l", "--links", dest="links", default=".dev", help="link file suffix")
 optparser.add_option("-o", "--one_grams", dest="one_grams", default="data/pruned_1_grams", help="one gram tanslation table")
 optparser.add_option("-t", "--two_grams", dest="two_grams", default="data/pruned_2_grams", help="two gram translation table")
 optparser.add_option("-r", "--result", dest="result_name", default="pairs_withFeatures.dev", help="name of file to write to")
@@ -38,8 +39,8 @@ for line in twogram_file:
 
 e_sentences = open(opts.english_pairs, "r")
 f_sentences = open(opts.foreign_pairs, "r")
-e_links = open("links.enu.dev", "r")
-f_links = open("links.esn.dev", "r")
+e_links = open("links.enu" + opts.links, "r")
+f_links = open("links.esn" + opts.links, "r")
 
 #pair up article sentences and add length_diff feature
 e_line = e_sentences.readline()
@@ -57,7 +58,11 @@ while e_line and f_line:
 		english.append(e_line.strip())
 		englishLinks[e_line.strip()] = e_link
 		e_line = e_sentences.readline()
-		e_link = e_links.readline().split(" ")
+		if len(e_links.readline().strip()) > 0:
+			e_link = e_links.readline().strip().split(" ")
+		else:
+			e_link = []
+
 	e_line = e_sentences.readline()
 	e_link = e_links.readline()
 
@@ -116,6 +121,5 @@ while e_line and f_line:
 	f_link = f_links.readline()
 
 result.close()
-
 
 

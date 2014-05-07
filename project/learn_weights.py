@@ -25,7 +25,7 @@ with open(opts.fileName, "r") as pairs:
 			pairs_feat.append(features)
 			pairs_category.append(1)
 		else:
-			if(i % 350 == 0):
+			if i % 50 == 0 or features[5] != 0:
 				nonepairs_feat.append(features)
 				nonepairs_category.append(-1)
 				
